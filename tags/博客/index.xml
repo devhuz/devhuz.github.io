@@ -6,10 +6,20 @@
     <description>Recent content in 博客 on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 27 Jan 2019 20:55:18 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Jan 2019 02:10:04 +0800</lastBuildDate>
     
 	<atom:link href="https://devhu.win/tags/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>新的开始</title>
+      <link>https://devhu.win/post/new-beginning/</link>
+      <pubDate>Mon, 28 Jan 2019 02:10:04 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/new-beginning/</guid>
+      <description> 经过一番折腾，新的博客终于弄好了，新的一年一定要坚持写博，2019 加油！
+ </description>
+    </item>
     
     <item>
       <title>Hugo搭建个人博客</title>

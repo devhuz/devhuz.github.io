@@ -6,10 +6,20 @@
     <description>Recent content on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 27 Jan 2019 20:55:18 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Jan 2019 02:10:04 +0800</lastBuildDate>
     
 	<atom:link href="https://devhu.win/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>新的开始</title>
+      <link>https://devhu.win/post/new-beginning/</link>
+      <pubDate>Mon, 28 Jan 2019 02:10:04 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/new-beginning/</guid>
+      <description> 经过一番折腾，新的博客终于弄好了，新的一年一定要坚持写博，2019 加油！
+ </description>
+    </item>
     
     <item>
       <title>Hugo搭建个人博客</title>
@@ -34,7 +44,7 @@
  子曰：“质胜文则野，文胜质则史，文质彬彬，然后君子”。
 “形而上者谓之道，形而下者谓之器”，子曰：“君子不器”
 关于本站 本站基于hugo搭建，目前以Github Pages的形式托管在Github。
-本站为个人博客，主要用于记录、分享个人的学习笔记、工作心得、及一些碎碎念。本站文章如无特别说明，均为原创，转载请注明出处。
+本站为个人博客，主要用于记录、分享个人的学习笔记、工作心得、及一些碎碎念。本站文章如无特殊说明，均为原创，转载请注明出处。
 关于我 自2014年伊始，已在互联网行业打杂多年，目前在广州一家互联网电商从事软件测试工作。
 你可以直接在本站留言和我交流，或通过以下方式联系我
 QQ: 2312664258
