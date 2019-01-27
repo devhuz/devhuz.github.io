@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.53" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hugo搭建个人博客 | 胡予の博客</title>
+    <meta property="og:title" content="Hugo搭建个人博客 - 胡予の博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-01-27T20:55:18&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-01-27T20:55:18&#43;08:00">
+        
+    <meta name="Keywords" content="胡予,测试">
+    <meta name="description" content="Hugo搭建个人博客">
+        
+    <meta name="author" content="胡予">
+    <meta property="og:url" content="https://devhu.win/post/hugo-start/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://devhu.win/">
+                        胡予の博客
+                    </a>
+                
+                <p class="description">形而上者谓之道，形而下者谓之器。</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://devhu.win/">首页</a>
+                    
+                    <a  href="https://devhu.win/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://devhu.win/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Hugo搭建个人博客</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年1月27日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://devhu.win/categories/%E8%BD%AF%E4%BB%B6">软件</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        <div class="post-content">
+                            <blockquote>
+<p>记录下博客搭建过程，网上虽然已有很多类似的教程但是都十分零碎的，本文主要记录本站的搭建过程。</p>
+</blockquote>
+
+<p>在使用<code>hugo</code>之前用过<code>hexo</code>但是感觉hexo用起来很不方便，特别是在多台电脑写博时不是很方便，搭建环境需要安装NodeJS环境，比较而言hugo就一个单文件，启动什么的就简单多了，这也侧面体现了go语言的魅力。</p>
+
+<h2 id="安装">安装</h2>
+
+<p>Hugo官方主页：<a href="https://gohugo.io/">https://gohugo.io/</a></p>
+
+<ul>
+<li><p>下载
+在<a href="https://github.com/gohugoio/hugo/releases">Hugo Releases</a>上下载最新版的Release程序。</p></li>
+
+<li><p>配置环境变量</p></li>
+</ul>
+
+<p>设置Windows系统环境变量，我的电脑右键&ndash;&gt;属性&ndash;&gt;高级系统设置&ndash;&gt;在&rdquo;高级&rdquo;标签页中&ndash;&gt;环境变量&hellip;，选中PATH变量，并编辑&hellip;，在编辑值中新添加hugo程序的路径即可，如：<code>D:\Develop\hugo</code></p>
+
+<ul>
+<li>创建站点</li>
+</ul>
+
+<pre><code>hugo new site blog      #创建本地站点
+</code></pre>
+
+<ul>
+<li>安装<code>maupassant</code>主题</li>
+</ul>
+
+<pre><code>cd blog
+git clone https://github.com/rujews/maupassant-hugo themes/maupassant
+</code></pre>
+
+<h2 id="常用命令">常用命令</h2>
+
+<pre><code class="language-bash">hugo new site blog      #创建本地站点
+hugo new about.md       #生成关于页面
+hugo new post/test.md   #创建文章
+hugo server             #http://localhost:1313访问站点。
+hugo										#生成静态文件 public
+</code></pre>
+
+<p><code>categories</code>设置分类，<code>tags</code>设置文章标签。</p>
+
+<pre><code>---
+title: &quot;Hugo搭建个人博客&quot;
+date: 2019-01-27T20:55:18+08:00
+draft: false
+categories: [&quot;软件&quot;]
+tags: [&quot;hugo&quot;,&quot;博客&quot;]
+---
+</code></pre>
+
+<p>注意：默认创建的是草稿类型，需要将<code>draft</code>值改为<code>false</code>才能看到页面。</p>
+
+<h2 id="添加评论">添加评论</h2>
+
+<p>默认支持<code>disqus</code>社会化评论，由于众所周知的原因disqus在国内并不可用。<code>maupassant</code>主题还支持<code>utteranc</code>评论是一种基于GitHub issue 评论官网在这<a href="https://utteranc.es">utteranc.es</a>，需要使用GitHub账号登录才行对于普通用户来说不是很合适。</p>
+
+<p>所以这里添加<a href="https://www.livere.com/">来必力</a>评论。</p>
+
+<ul>
+<li>修改<code>maupassant/layouts/partials/comments.html</code>，参考<code>utteranc</code>部分添加如下内容：</li>
+</ul>
+
+<pre><code class="language-html">&lt;!-- livere --&gt;
+{{ if .Site.Params.livere.enable }}
+    &lt;div id=&quot;lv-container&quot; data-id=&quot;city&quot; data-uid={{ .Site.Params.livere.livereid }}&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        (function(d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+            if (typeof LivereTower === 'function') { return; }
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
+    &lt;/script&gt;
+    &lt;noscript&gt; 为正常使用来必力评论功能请激活JavaScript&lt;/noscript&gt;
+&lt;/div&gt;
+{{ end }}
+</code></pre>
+
+<ul>
+<li><code>config.toml</code>添加配置</li>
+</ul>
+
+<pre><code>[params.livere]
+  enable = true
+  livereid = &quot;此处填写livereid&quot;
+</code></pre>
+
+<h2 id="部署">部署</h2>
+                        </div>
+
+                        
+
+<div class="post-archive">
+    <h5>更多推荐</h5>
+    <ul class="listing">
+        
+        <li><a href="/about/">关于</a></li>
+        
+        <li><a href="/archives/">归档</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://devhu.win/tags/hugo">hugo</a></li>
+                                
+                                <li><a href="https://devhu.win/tags/%E5%8D%9A%E5%AE%A2">博客</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    
+    
+      <div id="lv-container" data-id="city" data-uid=MTAyMC8zMTc2NC84MzI4>
+        <script type="text/javascript">
+            (function(d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+      <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://devhu.win/post/hugo-start/" title="Hugo搭建个人博客">Hugo搭建个人博客</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://devhu.win/categories/%E8%BD%AF%E4%BB%B6/">软件(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://devhu.win/tags/hugo/">hugo</a>
+    
+    <a href="https://devhu.win/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://devhu.win/loveting" title="loveting">loveting</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://devhu.win/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://devhu.win/">胡予の博客 By 胡予</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        Theme based on maupassant.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+</html>
