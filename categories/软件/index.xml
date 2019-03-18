@@ -6,10 +6,23 @@
     <description>Recent content in 软件 on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 27 Jan 2019 20:55:18 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 Feb 2019 14:57:05 +0800</lastBuildDate>
     
 	<atom:link href="https://devhu.win/categories/%E8%BD%AF%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Fiddler Mock Jsonp类型的返回结果</title>
+      <link>https://devhu.win/post/jsonp-fiddler/</link>
+      <pubDate>Sat, 16 Feb 2019 14:57:05 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/jsonp-fiddler/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://images2.imgbox.com/21/9a/0iXHZWpu_o.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;在日常测试过程中，经常会用&lt;code&gt;fiddler&lt;/code&gt; 抓包mock数据，对于普通的接口返回类型比较容易mock，但是像&lt;code&gt;JSONP&lt;/code&gt;由于其返回结果带有时间戳相当于每次返回内容是动态的所以不能直接写死需要使用&lt;code&gt;Fiddler Script&lt;/code&gt;动态替换Response。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
     
     <item>
       <title>Hugo搭建个人博客</title>

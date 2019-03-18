@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jar on 胡予の博客</title>
+    <link>https://devhu.win/tags/jar/</link>
+    <description>Recent content in Jar on 胡予の博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 16 Mar 2019 16:11:33 +0800</lastBuildDate>
+    
+	<atom:link href="https://devhu.win/tags/jar/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Nginx 部署JAVA Jar项目</title>
+      <link>https://devhu.win/post/deploy-jar-nginx/</link>
+      <pubDate>Sat, 16 Mar 2019 16:11:33 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/deploy-jar-nginx/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Nginx 部署Spring boot 等 JAVA Web Jar项目脚本配置，记录备忘。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://images2.imgbox.com/d6/9c/kIWST2Mn_o.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

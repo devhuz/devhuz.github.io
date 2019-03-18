@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.52" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Nginx 部署JAVA Jar项目 | 胡予の博客</title>
+    <meta property="og:title" content="Nginx 部署JAVA Jar项目 - 胡予の博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-03-16T16:11:33&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-03-16T16:11:33&#43;08:00">
+        
+    <meta name="Keywords" content="胡予,测试">
+    <meta name="description" content="Nginx 部署JAVA Jar项目">
+        
+    <meta name="author" content="胡予">
+    <meta property="og:url" content="https://devhu.win/post/deploy-jar-nginx/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://devhu.win/">
+                        胡予の博客
+                    </a>
+                
+                <p class="description">形而上者谓之道，形而下者谓之器。</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://devhu.win/">首页</a>
+                    
+                    <a  href="https://devhu.win/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://devhu.win/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Nginx 部署JAVA Jar项目</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年3月16日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://devhu.win/categories/%E6%8A%80%E6%9C%AF">技术</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        <div class="post-content">
+                            <blockquote>
+<p>Nginx 部署Spring boot 等 JAVA Web Jar项目脚本配置，记录备忘。</p>
+</blockquote>
+
+<p><img src="https://images2.imgbox.com/d6/9c/kIWST2Mn_o.png" alt="" /></p>
+
+<h2 id="启动脚本">启动脚本</h2>
+
+<pre><code class="language-bash">#!/bin/bash
+nohup java -jar xxxx.jar &gt; nohup.out 2&gt;&amp;1 &amp;
+</code></pre>
+
+<h2 id="停用脚本">停用脚本</h2>
+
+<pre><code class="language-bash">#!/bin/bash
+appName=&quot;xxxx.jar&quot;
+PID=$(ps -ef | grep &quot;$appName&quot; | grep -v grep | awk '{ print $2 }')
+if [ -z &quot;$PID&quot; ]
+then
+    echo Application is already stopped
+else
+    echo kill $PID
+    kill $PID
+fi
+</code></pre>
+
+<h2 id="nginx-配置">Nginx 配置</h2>
+
+<pre><code class="language-bash">server {
+        listen 80;
+
+        server_name example.com;
+
+        location / {
+             proxy_pass http://localhost:8080/;     #jar 应用本地端口
+             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+             proxy_set_header X-Forwarded-Proto $scheme;
+             proxy_set_header X-Forwarded-Port $server_port;
+        }
+}
+</code></pre>
+                        </div>
+						
+							<div style="text-align: center;">
+	<h3 style="color: #c03925;">本站文章如无特殊说明，均为原创，转载请注明出处，欢迎转发。</h3>
+	
+	<p>如果本文对你有所帮助不妨小额赞赏，你的支持是我坚持的动力。</p>
+	<img style="max-width:25%;" src="https://devhu.win//images/donate.jpg" >
+	
+</div>
+
+						
+						
+
+<div class="post-archive">
+    <h5>更多推荐</h5>
+    <ul class="listing">
+        
+        <li><a href="/post/kotlin-testng/">Kotlin Testng 重跑配置</a></li>
+        
+        <li><a href="/post/allure2-testng-gradle/">TestNG 使用 Allure2 报告 Gradle 配置说明</a></li>
+        
+        <li><a href="/post/jsonp-fiddler/">Fiddler Mock Jsonp类型的返回结果</a></li>
+        
+        <li><a href="/post/kotlin-simple-note/">Kotlin 一点零散笔记</a></li>
+        
+        <li><a href="/post/new-beginning/">新的开始</a></li>
+        
+    </ul>
+</div>
+
+						<div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://devhu.win/tags/nginx">Nginx</a></li>
+                                
+                                <li><a href="https://devhu.win/tags/jar">Jar</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    
+    
+      <div id="lv-container" data-id="city" data-uid=MTAyMC8zMTc2NC84MzI4>
+        <script type="text/javascript">
+            (function(d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+      <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://devhu.win/post/deploy-jar-nginx/" title="Nginx 部署JAVA Jar项目">Nginx 部署JAVA Jar项目</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/kotlin-testng/" title="Kotlin Testng 重跑配置">Kotlin Testng 重跑配置</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/allure2-testng-gradle/" title="TestNG 使用 Allure2 报告 Gradle 配置说明">TestNG 使用 Allure2 报告 Gradle 配置说明</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/jsonp-fiddler/" title="Fiddler Mock Jsonp类型的返回结果">Fiddler Mock Jsonp类型的返回结果</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/kotlin-simple-note/" title="Kotlin 一点零散笔记">Kotlin 一点零散笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/new-beginning/" title="新的开始">新的开始</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/hugo-start/" title="Hugo搭建个人博客">Hugo搭建个人博客</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://devhu.win/categories/%E6%8A%80%E6%9C%AF/">技术(4)</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/categories/%E7%94%9F%E6%B4%BB/">生活(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/categories/%E8%BD%AF%E4%BB%B6/">软件(2)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://devhu.win/tags/2019/">2019</a>
+    
+    <a href="https://devhu.win/tags/allure/">allure</a>
+    
+    <a href="https://devhu.win/tags/fiddler/">fiddler</a>
+    
+    <a href="https://devhu.win/tags/gradle/">gradle</a>
+    
+    <a href="https://devhu.win/tags/hugo/">hugo</a>
+    
+    <a href="https://devhu.win/tags/jar/">jar</a>
+    
+    <a href="https://devhu.win/tags/jsonp/">jsonp</a>
+    
+    <a href="https://devhu.win/tags/kotlin/">kotlin</a>
+    
+    <a href="https://devhu.win/tags/mock/">mock</a>
+    
+    <a href="https://devhu.win/tags/nginx/">nginx</a>
+    
+    <a href="https://devhu.win/tags/testng/">testng</a>
+    
+    <a href="https://devhu.win/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+    
+    <a href="https://devhu.win/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://devhu.win/loveting" title="loveting">loveting</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://imgbox.com/" title="imgbox.com">博客图床</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://devhu.win/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://devhu.win/">胡予の博客 By 胡予</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        Theme based on maupassant.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+</html>

@@ -6,10 +6,77 @@
     <description>Recent content in Posts on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 28 Jan 2019 02:10:04 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 Mar 2019 16:11:33 +0800</lastBuildDate>
     
 	<atom:link href="https://devhu.win/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Nginx 部署JAVA Jar项目</title>
+      <link>https://devhu.win/post/deploy-jar-nginx/</link>
+      <pubDate>Sat, 16 Mar 2019 16:11:33 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/deploy-jar-nginx/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Nginx 部署Spring boot 等 JAVA Web Jar项目脚本配置，记录备忘。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://images2.imgbox.com/d6/9c/kIWST2Mn_o.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Kotlin Testng 重跑配置</title>
+      <link>https://devhu.win/post/kotlin-testng/</link>
+      <pubDate>Sat, 02 Mar 2019 16:03:38 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/kotlin-testng/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://images2.imgbox.com/7e/dd/g7r5ncCL_o.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Kotlin 兼容Java 支持与 Java 互操作，使用Kotlin写测试用例更简单快捷。在使用TestNG过程中经常需要自定义重跑，官网和网上大部分都是JAVA的示例，特此记录下Kotlin的写法。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;定义重跑监听器&lt;code&gt;RetryListener&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;自定义重跑次数&lt;code&gt;RetryAnalyzer&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;覆写&lt;code&gt;ITestListener&lt;/code&gt;各类事件监听，剔除剔除用例个数统计中重跑次数。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>TestNG 使用 Allure2 报告 Gradle 配置说明</title>
+      <link>https://devhu.win/post/allure2-testng-gradle/</link>
+      <pubDate>Sat, 02 Mar 2019 15:38:57 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/allure2-testng-gradle/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://images2.imgbox.com/18/79/FBjDDzbY_o.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Fiddler Mock Jsonp类型的返回结果</title>
+      <link>https://devhu.win/post/jsonp-fiddler/</link>
+      <pubDate>Sat, 16 Feb 2019 14:57:05 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/jsonp-fiddler/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://images2.imgbox.com/21/9a/0iXHZWpu_o.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;在日常测试过程中，经常会用&lt;code&gt;fiddler&lt;/code&gt; 抓包mock数据，对于普通的接口返回类型比较容易mock，但是像&lt;code&gt;JSONP&lt;/code&gt;由于其返回结果带有时间戳相当于每次返回内容是动态的所以不能直接写死需要使用&lt;code&gt;Fiddler Script&lt;/code&gt;动态替换Response。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Kotlin 一点零散笔记</title>
+      <link>https://devhu.win/post/kotlin-simple-note/</link>
+      <pubDate>Fri, 08 Feb 2019 16:09:03 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/kotlin-simple-note/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Kotlin 一些零散笔记，记录备忘，方便查找。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://images2.imgbox.com/80/a0/ZUDwAzPW_o.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>新的开始</title>
