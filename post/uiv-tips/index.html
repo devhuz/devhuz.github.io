@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Hugo搭建个人博客 | 胡予の博客</title>
-    <meta property="og:title" content="Hugo搭建个人博客 - 胡予の博客">
+    <title>Vue uiv 组件踩坑记录 | 胡予の博客</title>
+    <meta property="og:title" content="Vue uiv 组件踩坑记录 - 胡予の博客">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2019-01-27T20:55:18&#43;08:00">
+    <meta property="article:published_time" content="2019-04-24T17:47:28&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2019-01-27T20:55:18&#43;08:00">
+    <meta property="article:modified_time" content="2019-04-24T17:47:28&#43;08:00">
         
     <meta name="Keywords" content="胡予,测试">
-    <meta name="description" content="Hugo搭建个人博客">
+    <meta name="description" content="Vue uiv 组件踩坑记录">
         
     <meta name="author" content="胡予">
-    <meta property="og:url" content="https://devhu.win/post/hugo-start/">
+    <meta property="og:url" content="https://devhu.win/post/uiv-tips/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -72,16 +72,16 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">Hugo搭建个人博客</h1>
+                            <h1 class="post-title">Vue uiv 组件踩坑记录</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2019年1月27日
+                            2019年4月24日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="https://devhu.win/categories/%E8%BD%AF%E4%BB%B6">软件</a></span>
+                                <span class="meta-category"><a href="https://devhu.win/categories/%E6%8A%80%E6%9C%AF">技术</a></span>
                             
                         </div>
                         
@@ -92,115 +92,60 @@
                         
                         <div class="post-content">
                             <blockquote>
-<p>记录下博客搭建过程，网上虽然已有很多类似的教程但是都十分零碎的，本文主要记录本站的搭建过程。</p>
+<p><code>uiv</code>是基于<code>Bootstrap 3</code>的<code>vue</code>组件（<code>Bootstrap</code>官方提供的组件时基于<code>Bootstrap 4</code>的）。在使用的过程中发现了一些问题，踩了些坑，特此记录下。<a href="https://uiv.wxsm.space">https://uiv.wxsm.space</a></p>
 </blockquote>
 
-<p>在使用<code>hugo</code>之前用过<code>hexo</code>但是感觉hexo用起来很不方便，特别是在多台电脑写博时不是很方便，搭建环境需要安装NodeJS环境，比较而言hugo就一个单文件，启动什么的就简单多了，这也侧面体现了go语言的魅力。</p>
+<h2 id="前缀问题">前缀问题</h2>
 
-<h2 id="安装">安装</h2>
-
-<p>Hugo官方主页：<a href="https://gohugo.io/">https://gohugo.io/</a></p>
-
-<ul>
-<li><p>下载
-在<a href="https://github.com/gohugoio/hugo/releases">Hugo Releases</a>上下载最新版的Release程序。</p></li>
-
-<li><p>配置环境变量</p></li>
-</ul>
-
-<p>设置Windows系统环境变量，我的电脑右键&ndash;&gt;属性&ndash;&gt;高级系统设置&ndash;&gt;在&rdquo;高级&rdquo;标签页中&ndash;&gt;环境变量&hellip;，选中PATH变量，并编辑&hellip;，在编辑值中新添加hugo程序的路径即可，如：<code>D:\Develop\hugo</code></p>
-
-<ul>
-<li>创建站点</li>
-</ul>
-
-<pre><code>hugo new site blog      #创建本地站点
+<pre><code class="language-js">import * as uiv from 'uiv'
+Vue.use(uiv, {prefix: 'uiv'})
 </code></pre>
 
-<ul>
-<li>安装<code>maupassant</code>主题</li>
-</ul>
+<p>由于引入时加了前缀，所以在后续的<code>date-picker</code>,<code>dropdown</code>,<code>btn</code>,<code>width</code> 使用时都需要添加<code>uiv</code>前缀，<code>uiv_slot=&quot;uiv-dropdown&quot;</code>此处<code>slot</code>方法也是要加前缀的，不加前缀不生效加上前缀才能挂到组件上去，但这里有个BUG,<code>width</code>不加前缀才会生效，但是会报错提示：“<code>width</code>未定义”，使用<code>uiv-width</code> 设置时又不生效。</p>
 
-<pre><code>cd blog
-git clone https://github.com/rujews/maupassant-hugo themes/maupassant
-</code></pre>
+<h2 id="dropdown-窗口无法正常弹出"><code>Dropdown</code>窗口无法正常弹出</h2>
 
-<h2 id="常用命令">常用命令</h2>
+<blockquote>
+<p>日期组件在使用<code>dropdown</code>时窗口没办法弹出，经排查这是<code>uiv</code>本身的bug，<a href="https://github.com/wxsms/uiv/issues/21">https://github.com/wxsms/uiv/issues/21</a>，解决方法是手动添加<code>show</code>变量控制，写法如下：</p>
+</blockquote>
 
-<pre><code class="language-bash">hugo new site blog      #创建本地站点
-hugo new about.md       #生成关于页面
-hugo new post/test.md   #创建文章
-hugo server             #http://localhost:1313访问站点。
-hugo                                        #生成静态文件 public
-</code></pre>
-
-<p><code>categories</code>设置分类，<code>tags</code>设置文章标签。</p>
-
-<pre><code>---
-title: &quot;Hugo搭建个人博客&quot;
-date: 2019-01-27T20:55:18+08:00
-draft: false
-categories: [&quot;软件&quot;]
-tags: [&quot;hugo&quot;,&quot;博客&quot;]
----
-</code></pre>
-
-<p>注意：默认创建的是草稿类型，需要将<code>draft</code>值改为<code>false</code>才能看到页面。</p>
-
-<h2 id="添加评论">添加评论</h2>
-
-<p>默认支持<code>disqus</code>社会化评论，由于众所周知的原因disqus在国内并不可用。<code>maupassant</code>主题还支持<code>utteranc</code>评论是一种基于GitHub issue 评论官网在这<a href="https://utteranc.es">utteranc.es</a>，需要使用GitHub账号登录才行对于普通用户来说不是很合适。</p>
-
-<p>所以这里添加<a href="https://www.livere.com/">来必力</a>评论。</p>
-
-<ul>
-<li>修改<code>maupassant/layouts/partials/comments.html</code>，参考<code>utteranc</code>部分添加如下内容：</li>
-</ul>
-
-<pre><code class="language-html">&lt;!-- livere --&gt;
-{{ if .Site.Params.livere.enable }}
-    &lt;div id=&quot;lv-container&quot; data-id=&quot;city&quot; data-uid={{ .Site.Params.livere.livereid }}&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-        (function(d, s) {
-            var j, e = d.getElementsByTagName(s)[0];
-            if (typeof LivereTower === 'function') { return; }
-            j = d.createElement(s);
-            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-            j.async = true;
-            e.parentNode.insertBefore(j, e);
-        })(document, 'script');
-    &lt;/script&gt;
-    &lt;noscript&gt; 为正常使用来必力评论功能请激活JavaScript&lt;/noscript&gt;
+<pre><code class="language-html">&lt;div class=&quot;form-group&quot;&gt;
+&lt;label for=&quot;middle-name&quot; class=&quot;control-label col-md-3 col-sm-3 col-xs-12&quot;&gt;有效时间&lt;/label&gt;
+&lt;div class=&quot;col-md-8 col-sm-8 col-xs-12&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+    &lt;div class=&quot;clear-padding col-md-4 col-sm-6 col-xs-12&quot;&gt;
+        &lt;uiv-dropdown class=&quot;form-group&quot;&gt;
+        &lt;div class=&quot;input-group&quot;&gt;
+            &lt;input class=&quot;form-control&quot; type=&quot;text&quot; v-model=&quot;date&quot;&gt;
+            &lt;div class=&quot;input-group-btn&quot;&gt;
+            &lt;uiv-btn @click=&quot;open = !open&quot; class=&quot;dropdown-toggle&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;&lt;/uiv-btn&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;template uiv_slot=&quot;uiv-dropdown&quot;&gt;
+            &lt;!-- 无法正常弹出关闭需要添加手动添加 show 变量控制参考：https://github.com/wxsms/uiv/issues/21 --&gt;
+            &lt;uiv-date-picker v-model=&quot;date&quot; v-show=&quot;open&quot; uiv_width=&quot;200&quot; /&gt;
+        &lt;/template&gt;
+        &lt;/uiv-dropdown&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-4 col-sm-6  col-md-offset-1 col-xs-12&quot;&gt;
+        &lt;uiv-dropdown class=&quot;form-group&quot;&gt;
+        &lt;div class=&quot;input-group&quot;&gt;
+            &lt;input class=&quot;form-control&quot; type=&quot;text&quot; v-model=&quot;date&quot;&gt;
+            &lt;div class=&quot;input-group-btn&quot;&gt;
+            &lt;uiv-btn @click=&quot;opentwo = !opentwo&quot; class=&quot;dropdown-toggle&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;&lt;/uiv-btn&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;template uiv_slot=&quot;uiv-dropdown&quot;&gt;
+            &lt;uiv-date-picker v-model=&quot;date&quot; v-show=&quot;opentwo&quot; uiv-width=&quot;200&quot; /&gt;
+        &lt;/template&gt;
+        &lt;/uiv-dropdown&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
 &lt;/div&gt;
-{{ end }}
+&lt;/div&gt;
 </code></pre>
 
-<ul>
-<li><code>config.toml</code>添加配置</li>
-</ul>
-
-<pre><code>[params.livere]
-  enable = true
-  livereid = &quot;此处填写livereid&quot;
-</code></pre>
-
-<h2 id="部署">部署</h2>
-
-<p>在<code>hugo</code>项目目录执行<code>hugo</code>即可生成静态站点，此时只需要将<code>public</code>里的内容部署到<code>Github Pages</code>即可。</p>
-
-<p>但是为了更方便的在其他电脑中写作，建议新建个私仓将整个项目提交，<code>public</code>目录通过<code>git submodule</code>子项目管理。</p>
-
-<ul>
-<li><a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97">git submodule使用介绍</a></li>
-</ul>
-
-<h2 id="其他">其他</h2>
-
-<ul>
-<li>域名绑定
-在<code>public</code>目录新建<code>CNAME</code>文件内容为要绑定的域名，如本站域名<code>devhu.win</code>。使用<a href="https://www.cloudflare.com/">https://www.cloudflare.com/</a>
-CDN 自带<code>https</code>。</li>
-</ul>
+<p><strong>Tips</strong>:日期组件不推荐用这个，<a href="https://github.com/flatpickr/flatpickr">flatpickr</a> 更好用，不依赖jQuery！</p>
                         </div>
 						
 							<div style="text-align: center;">
@@ -218,9 +163,15 @@ CDN 自带<code>https</code>。</li>
     <h5>更多推荐</h5>
     <ul class="listing">
         
-        <li><a href="/about/">关于</a></li>
+        <li><a href="/post/git-tips/">Git 常用操作</a></li>
         
-        <li><a href="/archives/">归档</a></li>
+        <li><a href="/post/jenkins-plugins-download-tool/">Jenkins 插件下载工具</a></li>
+        
+        <li><a href="/post/deploy-jar-nginx/">Nginx 部署JAVA Jar项目</a></li>
+        
+        <li><a href="/post/kotlin-testng/">Kotlin Testng 重跑配置</a></li>
+        
+        <li><a href="/post/allure2-testng-gradle/">TestNG 使用 Allure2 报告 Gradle 配置说明</a></li>
         
     </ul>
 </div>
@@ -229,9 +180,11 @@ CDN 自带<code>https</code>。</li>
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="https://devhu.win/tags/hugo">hugo</a></li>
+                                <li><a href="https://devhu.win/tags/uiv">uiv</a></li>
                                 
-                                <li><a href="https://devhu.win/tags/%E5%8D%9A%E5%AE%A2">博客</a></li>
+                                <li><a href="https://devhu.win/tags/bootstrap">Bootstrap</a></li>
+                                
+                                <li><a href="https://devhu.win/tags/vue">vue</a></li>
                                 
                             </ul>
                             
