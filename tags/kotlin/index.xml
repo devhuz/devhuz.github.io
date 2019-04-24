@@ -6,10 +6,21 @@
     <description>Recent content in Kotlin on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 02 Mar 2019 16:03:38 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Apr 2019 16:22:05 +0800</lastBuildDate>
     
 	<atom:link href="https://devhu.win/tags/kotlin/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jenkins 插件下载工具</title>
+      <link>https://devhu.win/post/jenkins-plugins-download-tool/</link>
+      <pubDate>Wed, 24 Apr 2019 16:22:05 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/jenkins-plugins-download-tool/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Jenkins 插件在线安装失败时，通常需要手动下载&lt;code&gt;.hpi&lt;/code&gt;文件上传安装，在下载插件过程中常常会出现一个插件依赖另外一个插件的情况（通常情况下会出现A依赖B，B依赖C，C依赖D的情况），手动处理这种递归依赖十分麻烦，需要在下载插件的时候同时下载相关依赖。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
     
     <item>
       <title>Kotlin Testng 重跑配置</title>

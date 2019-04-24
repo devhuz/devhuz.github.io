@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Fiddler Mock Jsonp类型的返回结果 | 胡予の博客</title>
-    <meta property="og:title" content="Fiddler Mock Jsonp类型的返回结果 - 胡予の博客">
+    <title>Jenkins 插件下载工具 | 胡予の博客</title>
+    <meta property="og:title" content="Jenkins 插件下载工具 - 胡予の博客">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2019-02-16T14:57:05&#43;08:00">
+    <meta property="article:published_time" content="2019-04-24T16:22:05&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2019-02-16T14:57:05&#43;08:00">
+    <meta property="article:modified_time" content="2019-04-24T16:22:05&#43;08:00">
         
     <meta name="Keywords" content="胡予,测试">
-    <meta name="description" content="Fiddler Mock Jsonp类型的返回结果">
+    <meta name="description" content="Jenkins 插件下载工具">
         
     <meta name="author" content="胡予">
-    <meta property="og:url" content="https://devhu.win/post/jsonp-fiddler/">
+    <meta property="og:url" content="https://devhu.win/post/jenkins-plugins-download-tool/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -72,16 +72,16 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">Fiddler Mock Jsonp类型的返回结果</h1>
+                            <h1 class="post-title">Jenkins 插件下载工具</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2019年2月16日
+                            2019年4月24日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="https://devhu.win/categories/%E8%BD%AF%E4%BB%B6">软件</a></span>
+                                <span class="meta-category"><a href="https://devhu.win/categories/%E6%8A%80%E6%9C%AF">技术</a></span>
                             
                         </div>
                         
@@ -91,70 +91,153 @@
                         </div>
                         
                         <div class="post-content">
-                            <p><img src="https://images2.imgbox.com/21/9a/0iXHZWpu_o.png" alt="" /></p>
-
-<blockquote>
-<p>在日常测试过程中，经常会用<code>fiddler</code> 抓包mock数据，对于普通的接口返回类型比较容易mock，但是像<code>JSONP</code>由于其返回结果带有时间戳相当于每次返回内容是动态的所以不能直接写死需要使用<code>Fiddler Script</code>动态替换Response。</p>
+                            <blockquote>
+<p>Jenkins 插件在线安装失败时，通常需要手动下载<code>.hpi</code>文件上传安装，在下载插件过程中常常会出现一个插件依赖另外一个插件的情况（通常情况下会出现A依赖B，B依赖C，C依赖D的情况），手动处理这种递归依赖十分麻烦，需要在下载插件的时候同时下载相关依赖。</p>
 </blockquote>
 
-<h2 id="jsonp-介绍">JSONP 介绍</h2>
+<h2 id="通过官方插件页面获取插件依赖">通过官方插件页面获取插件依赖</h2>
 
-<p>JSONP是JSON with Padding的略称。它是一个非官方的协议，它允许在服务器端集成Script tags返回至客户端，通过javascript callback的形式实现跨域访问。</p>
+<p>如图，其中<code>required</code>级别为必须依赖，只需要处理这部分就好。
+<img src="https://images2.imgbox.com/57/18/eOt5RZJL_o.jpg" alt="" /></p>
 
-<h2 id="fiddler-script-动态替换-response">Fiddler Script 动态替换 Response</h2>
+<pre><code class="language-kotlin">//通过官方插件页面爬取插件依赖，容易超时。
+fun getDependencies(pluginName: String,depSet:MutableSet&lt;String&gt;){
+    val baseURL = &quot;http://plugins.jenkins.io$pluginName&quot;
+//    println(&quot;当前URL$baseURL&quot;)
+    try {
+        val doc = Jsoup.connect(baseURL).timeout(10000).ignoreContentType(true).get()
+        val links = doc.select(&quot;.required&quot;).select(&quot;a[href]&quot;)   //获取required级别的必须依赖
+        if(!links.isEmpty()){
+            for (link in links){
+                val href = link.attr(&quot;href&quot;)    //依赖组件的地址
+                if(!depSet.contains(href)){     //不存在则添加
+                    depSet.add(href)
+                    getDependencies(href,depSet)    //递归爬取依赖插件的依赖
+                }
+            }
+        }
+        depSet.add(pluginName)  //添加自身
 
-<blockquote>
-<p>Mock数据可以直接写在脚本里，也可以通过加载本地文件，为了便于维护最好是加载本地数据文件</p>
-</blockquote>
-
-<pre><code class="language-js">//读取本地文件
-static function readFile(filename)
-{
-    var fso = new ActiveXObject( &quot;Scripting.FileSystemObject&quot;);
-    var f = fso.OpenTextFile(filename, 1);
-    var s = &quot;&quot;;
-    while(!f.AtEndOfStream)
-        s += f.ReadLine();
-    f.Close();
-    return s;
+    }catch (e:NullPointerException){
+        e.printStackTrace()
+    }catch (e:HttpStatusException){
+        e.printStackTrace()
+    }
 }
+
 </code></pre>
 
-<p>修改 <code>OnBeforeResponse</code> 方法替换返回内容</p>
+<h2 id="插件下载">插件下载</h2>
 
-<pre><code class="language-js">static function OnBeforeResponse(oSession: Session) {
-    if (m_Hide304s &amp;&amp; oSession.responseCode == 304) {
-        oSession[&quot;ui-hide&quot;] = &quot;true&quot;;
-    };
-    
-    //jsonp mock 示例
-        if(oSession.uriContains(&quot;getProductListByExtend&quot;)){    //通过关键字匹配接口
-        oSession.utilDecodeResponse();
-        var body = System.Text.Encoding.UTF8.GetString(oSession.responseBodyBytes);
-        var string = readFile(&quot;D:\\Users\\zhenrong.hu\\Desktop\\getProductListByExtend.json&quot;);  //读取本地文件
-        var index = body.indexOf('(');
-        var b = body.slice(0, index);
-        body = b + '('+ string + ')';
-        oSession.utilSetResponseBody(body);//替换Body内容
-    };
-            
-    //跨域配置，遇到跨域问题时添加，例如：请求api.devhu.win域时需要跨域访问http://thisdevhu.com
-    if (oSession.HostnameIs(&quot;api.devhu.win&quot;)){
-        if (!oSession.ResponseHeaders.Exists(&quot;Access-Control-Allow-Credentials&quot;))
-            oSession.ResponseHeaders.Add(&quot;Access-Control-Allow-Credentials&quot;,&quot;true&quot;);
-        if (!oSession.ResponseHeaders.Exists(&quot;Access-Control-Allow-Origin&quot;))
-            oSession.ResponseHeaders.Add(&quot;Access-Control-Allow-Origin&quot;,&quot;http://thisdevhu.com&quot;);
+<blockquote>
+<p>获取相关依赖后就可以批量下载相关<code>.hpi</code>文件了，此处通过清华镜像站下载插件<a href="https://mirrors.tuna.tsinghua.edu.cn/jenkins/plugins">https://mirrors.tuna.tsinghua.edu.cn/jenkins/plugins</a> 默认下载路径为当前目录下的<code>plugins</code>目录。</p>
+</blockquote>
+
+<ul>
+<li>完整脚本</li>
+</ul>
+
+<pre><code class="language-kotlin">import com.github.kittinunf.fuel.Fuel
+import org.jsoup.HttpStatusException
+import org.jsoup.Jsoup
+import org.slf4j.LoggerFactory
+import java.io.File
+
+/**
+ * jenkins 插件下载
+ */
+class JenkinsPlugins
+private  var logger = LoggerFactory.getLogger(JenkinsPlugins::class.java)
+
+fun main(args: Array&lt;String&gt;){
+    print(&quot;插件名称: &quot;)
+    val pluginsInput = readLine()!!
+
+    var pluginName = &quot;/${pluginsInput.trim()}&quot;
+    val depSet = mutableSetOf&lt;String&gt;()
+    logger.info(&quot;获取相关依赖&quot;)
+    getDependencies(pluginName,depSet)
+    val pluginDirectory = &quot;plugins&quot;
+    if (!File(pluginDirectory).exists()) {
+        File(pluginDirectory).mkdirs()
+    }
+    for(dep in depSet){
+        val saveName = &quot;$pluginDirectory$dep.hpi&quot;
+        val downloadUrl = &quot;https://mirrors.tuna.tsinghua.edu.cn/jenkins/plugins$dep/latest$dep.hpi&quot;
+        logger.info(&quot;正在下载：$saveName  下载地址：$downloadUrl&quot;)
+        download(saveName,downloadUrl)
+    }
+}
+//通过官方插件页面爬取插件依赖。
+fun getDependencies(pluginName: String,depSet:MutableSet&lt;String&gt;){
+    val baseURL = &quot;http://plugins.jenkins.io$pluginName&quot;
+//    println(&quot;当前URL$baseURL&quot;)
+    try {
+        val doc = Jsoup.connect(baseURL).timeout(10000).ignoreContentType(true).get()
+        val links = doc.select(&quot;.required&quot;).select(&quot;a[href]&quot;)   //获取required级别的必须依赖
+        if(!links.isEmpty()){
+            for (link in links){
+                val href = link.attr(&quot;href&quot;)    //依赖组件的地址
+                if(!depSet.contains(href)){     //不存在则添加
+                    depSet.add(href)
+                    getDependencies(href,depSet)    //递归爬取依赖插件的依赖
+                }
+            }
+        }
+        depSet.add(pluginName)  //添加自身
+
+    }catch (e:NullPointerException){
+        e.printStackTrace()
+    }catch (e:HttpStatusException){
+        e.printStackTrace()
+    }
+}
+
+/**
+ * 根据下载地址和保存名称下载
+ */
+fun download(saveName:String,downloadUrl:String){
+    var file = File(saveName)
+    if(file.exists()){
+        logger.info(&quot;$saveName 已存在跳过&quot;)
+    } else {
+        Fuel.download(downloadUrl)
+                .destination { response, url -&gt; File(saveName).apply { logger.info(&quot;保存路径：$absolutePath&quot;) } }
+                .responseString()
     }
 }
 </code></pre>
 
-<h2 id="总结">总结</h2>
+<h2 id="插件安装">插件安装</h2>
 
-<p>Fiddler 在抓包mock接口数据时，如果需要Jsonp 此类动态返回时需要编写<code>Fiddler Script</code> 动态替返回内容，其他需要动态修改请求或返回时类似。</p>
+<blockquote>
+<p>为了方便使用，将脚本打包成JAR包。Jenkins插件默认目录是<code>/var/lib/jenkins/plugins</code>而脚本下载的目录即是<code>plugins</code>，所以插件下载只需在<code>/var/lib/jenkins/</code>目录<code>java -jar xxx.jar</code>运行JAR包即可。（<a href="https://share.weiyun.com/5LZbwPl">JenkinsPluginsDownload-1.0-SNAPSHOT.jar 下载</a>）</p>
+</blockquote>
 
-<h2 id="附录">附录</h2>
+<p><img src="https://images2.imgbox.com/92/59/00lO2xQ1_o.jpg" alt="" /></p>
 
-<p><a href="https://docs.telerik.com/fiddler/KnowledgeBase/FiddlerScript/ModifyRequestOrResponse">Fiddler Script</a></p>
+<pre><code class="language-bash">drwxr-xr-x 4 jenkins jenkins    4096 Mar 21 18:35 workflow-api
+-rw-r--r-- 1 jenkins jenkins  154949 Mar 21 18:34 workflow-api.hpi
+drwxr-xr-x 5 jenkins jenkins    4096 Mar 21 18:35 workflow-job
+-rw-r--r-- 1 jenkins jenkins  111587 Mar 21 18:34 workflow-job.hpi
+drwxr-xr-x 4 jenkins jenkins    4096 Mar 21 18:35 workflow-scm-step
+-rw-r--r-- 1 jenkins jenkins   15060 Mar 21 18:34 workflow-scm-step.hpi
+drwxr-xr-x 4 jenkins jenkins    4096 Mar 21 18:35 workflow-step-api
+-rw-r--r-- 1 jenkins jenkins   74010 Mar 21 18:34 workflow-step-api.hpi
+drwxr-xr-x 5 jenkins jenkins    4096 Mar 21 18:35 workflow-support
+-rw-r--r-- 1 jenkins jenkins  380043 Mar 21 18:34 workflow-support.hpi
+</code></pre>
+
+<p>注意到系统默认的Jenkins插件文件的权限是<code>jenkins:jenkins</code>，而用脚本下载插件文件的权限取决于执行脚本的用户，如：当前用户是<code>root</code>下载后插件的权限即是<code>root:root</code>所以此时还需要修改下权限，执行<code>chown -R jenkins:jenkins plugins/</code></p>
+
+<p>插件下载好后，重启Jenkins即可生效<code>service jenkins restart</code>。</p>
+
+<h2 id="优化改进">优化改进</h2>
+
+<p>通过官方页面爬取相关依赖时，出现超时需要多次执行的清空，可通过镜像站的<code>update-center.json</code>文件解析相关依赖，<a href="https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json">https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json</a>，如图：</p>
+
+<p><img src="https://images2.imgbox.com/6f/40/M6VsEEXa_o.jpg" alt="" />
+<img src="https://images2.imgbox.com/14/14/FN98Qt8l_o.jpg" alt="" /></p>
                         </div>
 						
 							<div style="text-align: center;">
@@ -172,15 +255,15 @@ static function readFile(filename)
     <h5>更多推荐</h5>
     <ul class="listing">
         
+        <li><a href="/post/kotlin-testng/">Kotlin Testng 重跑配置</a></li>
+        
         <li><a href="/post/kotlin-simple-note/">Kotlin 一点零散笔记</a></li>
         
-        <li><a href="/post/new-beginning/">新的开始</a></li>
+        <li><a href="/post/deploy-jar-nginx/">Nginx 部署JAVA Jar项目</a></li>
         
-        <li><a href="/post/hugo-start/">Hugo搭建个人博客</a></li>
+        <li><a href="/post/allure2-testng-gradle/">TestNG 使用 Allure2 报告 Gradle 配置说明</a></li>
         
-        <li><a href="/about/">关于</a></li>
-        
-        <li><a href="/archives/">归档</a></li>
+        <li><a href="/post/jsonp-fiddler/">Fiddler Mock Jsonp类型的返回结果</a></li>
         
     </ul>
 </div>
@@ -189,11 +272,9 @@ static function readFile(filename)
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="https://devhu.win/tags/jsonp">jsonp</a></li>
+                                <li><a href="https://devhu.win/tags/jenkins">Jenkins</a></li>
                                 
-                                <li><a href="https://devhu.win/tags/fiddler">fiddler</a></li>
-                                
-                                <li><a href="https://devhu.win/tags/mock">mock</a></li>
+                                <li><a href="https://devhu.win/tags/kotlin">Kotlin</a></li>
                                 
                             </ul>
                             
