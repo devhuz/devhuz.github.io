@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tips on 胡予の博客</title>
+    <link>https://devhu.win/tags/tips/</link>
+    <description>Recent content in Tips on 胡予の博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 24 Apr 2019 17:26:19 +0800</lastBuildDate>
+    
+	<atom:link href="https://devhu.win/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git 常用操作</title>
+      <link>https://devhu.win/post/git-tips/</link>
+      <pubDate>Wed, 24 Apr 2019 17:26:19 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/git-tips/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Git常用操作命令记录备忘。&lt;a href=&#34;https://gitee.com/progit/&#34;&gt;Git教程《Pro Git（中文版）》&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;查看配置&#34;&gt;查看配置&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git config --local --list    #当前仓库配置信息
+git config --global --list  #当前用户（global）配置
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>Git</title>
+      <link>https://devhu.win/tags/git/</link>
+      <pubDate>Wed, 24 Apr 2019 17:26:19 +0800</pubDate>
+      
+      <guid>https://devhu.win/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Gradle</title>
       <link>https://devhu.win/tags/gradle/</link>
       <pubDate>Sat, 02 Mar 2019 15:38:57 +0800</pubDate>
@@ -116,6 +125,15 @@
       <pubDate>Sat, 02 Mar 2019 16:03:38 +0800</pubDate>
       
       <guid>https://devhu.win/tags/testng/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tips</title>
+      <link>https://devhu.win/tags/tips/</link>
+      <pubDate>Wed, 24 Apr 2019 17:26:19 +0800</pubDate>
+      
+      <guid>https://devhu.win/tags/tips/</guid>
       <description></description>
     </item>
     

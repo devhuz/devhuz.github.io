@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://devhu.win/post/git-tips/</loc>
+    <lastmod>2019-04-24T17:26:19+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://devhu.win/post/jenkins-plugins-download-tool/</loc>
     <lastmod>2019-04-24T16:22:05+08:00</lastmod>
   </url>
@@ -71,6 +76,12 @@
   </url>
   
   <url>
+    <loc>https://devhu.win/tags/git/</loc>
+    <lastmod>2019-04-24T17:26:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://devhu.win/tags/gradle/</loc>
     <lastmod>2019-03-02T15:38:57+08:00</lastmod>
     <priority>0</priority>
@@ -120,7 +131,7 @@
   
   <url>
     <loc>https://devhu.win/post/</loc>
-    <lastmod>2019-04-24T16:22:05+08:00</lastmod>
+    <lastmod>2019-04-24T17:26:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -137,6 +148,12 @@
   </url>
   
   <url>
+    <loc>https://devhu.win/tags/tips/</loc>
+    <lastmod>2019-04-24T17:26:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://devhu.win/tags/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2019-01-28T02:10:04+08:00</lastmod>
     <priority>0</priority>
@@ -148,7 +165,7 @@
   
   <url>
     <loc>https://devhu.win/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2019-04-24T16:22:05+08:00</lastmod>
+    <lastmod>2019-04-24T17:26:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -166,7 +183,7 @@
   
   <url>
     <loc>https://devhu.win/</loc>
-    <lastmod>2019-04-24T16:22:05+08:00</lastmod>
+    <lastmod>2019-04-24T17:26:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   

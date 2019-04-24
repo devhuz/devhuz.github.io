@@ -6,10 +6,27 @@
     <description>Recent content on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 24 Apr 2019 16:22:05 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Apr 2019 17:26:19 +0800</lastBuildDate>
     
 	<atom:link href="https://devhu.win/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git 常用操作</title>
+      <link>https://devhu.win/post/git-tips/</link>
+      <pubDate>Wed, 24 Apr 2019 17:26:19 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/git-tips/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Git常用操作命令记录备忘。&lt;a href=&#34;https://gitee.com/progit/&#34;&gt;Git教程《Pro Git（中文版）》&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;查看配置&#34;&gt;查看配置&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git config --local --list    #当前仓库配置信息
+git config --global --list  #当前用户（global）配置
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
     
     <item>
       <title>Jenkins 插件下载工具</title>
