@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.52" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Java 操作Sqlite数据库 | 胡予の博客</title>
+    <meta property="og:title" content="Java 操作Sqlite数据库 - 胡予の博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-05-06T10:26:34&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-05-06T10:26:34&#43;08:00">
+        
+    <meta name="Keywords" content="胡予,测试">
+    <meta name="description" content="Java 操作Sqlite数据库">
+        
+    <meta name="author" content="胡予">
+    <meta property="og:url" content="https://devhu.win/post/java-sqlite/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://devhu.win/">
+                        胡予の博客
+                    </a>
+                
+                <p class="description">形而上者谓之道，形而下者谓之器。</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://devhu.win/">首页</a>
+                    
+                    <a  href="https://devhu.win/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://devhu.win/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Java 操作Sqlite数据库</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年5月6日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://devhu.win/categories/%E6%8A%80%E6%9C%AF">技术</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        <div class="post-content">
+                            <blockquote>
+<p>Java 操作<code>Sqlite</code>数据库。sqlite 驱动版本 <code>compile &quot;org.xerial:sqlite-jdbc:3.27.2&quot;</code></p>
+</blockquote>
+
+<h2 id="创建sqlite数据库">创建Sqlite数据库</h2>
+
+<blockquote>
+<p>检查数据库是否存在，不存在则创建。</p>
+</blockquote>
+
+<pre><code class="language-java">public static void createDatabase(String dbName) {
+
+        File file = new File(dbName);
+
+        if (file.exists()) {
+            logger.info(&quot;This database name already exists&quot;);
+        } else {
+            String connUrl = &quot;jdbc:sqlite:&quot; + dbName;
+            try (Connection conn = DriverManager.getConnection(connUrl)) {
+                if (conn != null) {
+                    DatabaseMetaData meta = conn.getMetaData();
+                    logger.info(&quot;The driver name is &quot; + meta.getDriverName());
+                    logger.info(&quot;A new database has been created.&quot;);
+                }
+
+            } catch (SQLException e) {
+                logger.error(e.getMessage());
+            }
+        }
+
+    }
+</code></pre>
+
+<h2 id="初始化数据库">初始化数据库</h2>
+
+<blockquote>
+<p>通过加载SQL脚本文件初始化数据</p>
+</blockquote>
+
+<pre><code class="language-java">public static void initDBTables(String sqlFile) {
+    try {
+        String sql = new String(Files.readAllBytes(Paths.get(sqlFile)));    //加载文件
+
+        logger.info(sql);
+
+        String connUrl = DRIVERURL + DBNAME;
+
+        try (Connection conn = DriverManager.getConnection(connUrl); Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);      //初始化数据库
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }
+    } catch (IOException e) {
+        logger.error(e.getMessage());
+        logger.info(&quot;This file is not exists&quot;);
+    }
+}
+</code></pre>
+
+<h2 id="sqlite工具类">Sqlite工具类</h2>
+
+<blockquote>
+<p>用于处理<code>sqlite</code>数据库连接和关闭连接操作</p>
+</blockquote>
+
+<pre><code class="language-java">public class SqliteDBUtil {
+
+    public static String DRIVERURL; // sqlite 驱动
+    public static String DBNAME; // sqlite 数据库名
+    private static ResourceBundle rb = ResourceBundle.getBundle(&quot;db-config&quot;); // 加载配置文件
+    private static Logger logger = LoggerFactory.getLogger(SqliteDBUtil.class);
+
+    // 使用静态块加载配置
+    static {
+        DBNAME = rb.getString(&quot;sqlite.db.name&quot;);
+        DRIVERURL = &quot;jdbc:sqlite:&quot;;
+    }
+
+    /**
+     * 建立数据库连接
+     * @return
+     */
+    public static Connection getConnection() {
+        Connection conn = null;
+        String connUrl = DRIVERURL + DBNAME;
+        try {
+            conn = DriverManager.getConnection(connUrl);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+    /**
+     * 关闭数据库连接
+     * @param conn
+     */
+    public static void close(Connection conn) {
+        try {
+            if (conn != null)
+                conn.close();
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }
+    }
+}
+</code></pre>
+
+<h2 id="遇到的问题">遇到的问题</h2>
+
+<ul>
+<li><p>由于sqlite 不支持<code>Date type</code> 时间类型的数据无法直接转换成JAVA的<code>TIMESTAMP</code>等其他时间类型，需要查询后做转化</p>
+
+<pre><code class="language-java">LocalDate.parse(&quot;2018-05-24&quot;, DateTimeFormatter.ofPattern(yyyy-MM-dd));
+#或者解析字符串为时间类型
+new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;).parse(rs.getString(&quot;CREATION_TIME&quot;)); //Throws exception
+</code></pre>
+
+<p>或直接修改Model 类对应变量类型为<code>String</code>，这样在使用<code>org.apache.commons.dbutils</code>包时，可直接使用<code>new BeanListHandler&lt;User&gt;</code>接收数据。</p></li>
+
+<li><p>sqlite <code>default CURRENT_TIMESTAMP)</code>是UTC时间，<code>default (datetime('now','localtime'))</code>才是本地时间</p></li>
+</ul>
+                        </div>
+						
+							<div style="text-align: center;">
+	<h3 style="color: #c03925;">本站文章如无特殊说明，均为原创，转载请注明出处，欢迎转发。</h3>
+	
+	<p>如果本文对你有所帮助不妨小额赞赏，你的支持是我坚持的动力。</p>
+	<img style="max-width:25%;" src="https://devhu.win//images/donate.jpg" >
+	
+</div>
+
+						
+						
+
+<div class="post-archive">
+    <h5>更多推荐</h5>
+    <ul class="listing">
+        
+        <li><a href="/post/uiv-tips/">Vue uiv 组件踩坑记录</a></li>
+        
+        <li><a href="/post/git-tips/">Git 常用操作</a></li>
+        
+        <li><a href="/post/jenkins-plugins-download-tool/">Jenkins 插件下载工具</a></li>
+        
+        <li><a href="/post/deploy-jar-nginx/">Nginx 部署JAVA Jar项目</a></li>
+        
+        <li><a href="/post/kotlin-testng/">Kotlin Testng 重跑配置</a></li>
+        
+    </ul>
+</div>
+
+						<div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://devhu.win/tags/java">JAVA</a></li>
+                                
+                                <li><a href="https://devhu.win/tags/sqlite">Sqlite</a></li>
+                                
+                                <li><a href="https://devhu.win/tags/db">DB</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    
+    
+      <div id="lv-container" data-id="city" data-uid=MTAyMC8zMTc2NC84MzI4>
+        <script type="text/javascript">
+            (function(d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+      <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://devhu.win/post/javascript-vs-jquery/" title="原生JavaScript与jQuery差异对比">原生JavaScript与jQuery差异对比</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/java-dbutils/" title="Java Dbutils 使用笔记">Java Dbutils 使用笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/java-sqlite/" title="Java 操作Sqlite数据库">Java 操作Sqlite数据库</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/uiv-tips/" title="Vue uiv 组件踩坑记录">Vue uiv 组件踩坑记录</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/git-tips/" title="Git 常用操作">Git 常用操作</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/jenkins-plugins-download-tool/" title="Jenkins 插件下载工具">Jenkins 插件下载工具</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/deploy-jar-nginx/" title="Nginx 部署JAVA Jar项目">Nginx 部署JAVA Jar项目</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/kotlin-testng/" title="Kotlin Testng 重跑配置">Kotlin Testng 重跑配置</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/allure2-testng-gradle/" title="TestNG 使用 Allure2 报告 Gradle 配置说明">TestNG 使用 Allure2 报告 Gradle 配置说明</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/jsonp-fiddler/" title="Fiddler Mock Jsonp类型的返回结果">Fiddler Mock Jsonp类型的返回结果</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://devhu.win/categories/%E6%8A%80%E6%9C%AF/">技术(10)</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/categories/%E7%94%9F%E6%B4%BB/">生活(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/categories/%E8%BD%AF%E4%BB%B6/">软件(2)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://devhu.win/tags/2019/">2019</a>
+    
+    <a href="https://devhu.win/tags/allure/">allure</a>
+    
+    <a href="https://devhu.win/tags/bootstrap/">bootstrap</a>
+    
+    <a href="https://devhu.win/tags/db/">db</a>
+    
+    <a href="https://devhu.win/tags/dbutils/">dbutils</a>
+    
+    <a href="https://devhu.win/tags/fiddler/">fiddler</a>
+    
+    <a href="https://devhu.win/tags/git/">git</a>
+    
+    <a href="https://devhu.win/tags/gradle/">gradle</a>
+    
+    <a href="https://devhu.win/tags/hugo/">hugo</a>
+    
+    <a href="https://devhu.win/tags/jar/">jar</a>
+    
+    <a href="https://devhu.win/tags/java/">java</a>
+    
+    <a href="https://devhu.win/tags/javascript/">javascript</a>
+    
+    <a href="https://devhu.win/tags/jenkins/">jenkins</a>
+    
+    <a href="https://devhu.win/tags/jquery/">jquery</a>
+    
+    <a href="https://devhu.win/tags/jsonp/">jsonp</a>
+    
+    <a href="https://devhu.win/tags/kotlin/">kotlin</a>
+    
+    <a href="https://devhu.win/tags/mock/">mock</a>
+    
+    <a href="https://devhu.win/tags/nginx/">nginx</a>
+    
+    <a href="https://devhu.win/tags/sqlite/">sqlite</a>
+    
+    <a href="https://devhu.win/tags/testng/">testng</a>
+    
+    <a href="https://devhu.win/tags/tips/">tips</a>
+    
+    <a href="https://devhu.win/tags/uiv/">uiv</a>
+    
+    <a href="https://devhu.win/tags/vue/">vue</a>
+    
+    <a href="https://devhu.win/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+    
+    <a href="https://devhu.win/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://devhu.win/loveting" title="loveting">loveting</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://imgbox.com/" title="imgbox.com">博客图床</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://devhu.win/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://devhu.win/">胡予の博客 By 胡予</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        Theme based on maupassant.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+</html>

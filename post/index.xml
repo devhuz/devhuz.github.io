@@ -6,10 +6,49 @@
     <description>Recent content in Posts on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 24 Apr 2019 17:47:28 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 May 2019 14:33:35 +0800</lastBuildDate>
     
 	<atom:link href="https://devhu.win/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>原生JavaScript与jQuery差异对比</title>
+      <link>https://devhu.win/post/javascript-vs-jquery/</link>
+      <pubDate>Thu, 16 May 2019 14:33:35 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/javascript-vs-jquery/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原生&lt;code&gt;JavaScript&lt;/code&gt;与&lt;code&gt;jQuery&lt;/code&gt;操作差异对比，基于&lt;a href=&#34;https://www.w3schools.com/js/js_jquery_selectors.asp&#34;&gt;w3schools.com&lt;/a&gt;整理。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java Dbutils 使用笔记</title>
+      <link>https://devhu.win/post/java-dbutils/</link>
+      <pubDate>Fri, 10 May 2019 14:30:32 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/java-dbutils/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://commons.apache.org/proper/commons-dbutils/&#34;&gt;Commons DbUtils&lt;/a&gt;是Apache组织提供的一个对JDBC进行简单封装的开源工具类库，使用它能够简化JDBC应用程序的开发，同时也不会影响程序的性能。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;单行数据处理：&lt;code&gt;ScalarHandler&lt;/code&gt;    &lt;code&gt;ArrayHandler&lt;/code&gt;    &lt;code&gt;MapHandler&lt;/code&gt;    &lt;code&gt;BeanHandler&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;多行数据处理：&lt;code&gt;BeanListHandler&lt;/code&gt;    &lt;code&gt;AbstractListHandler&lt;/code&gt;（ArrayListHandler MapListHandler ColumnListHandler） &lt;code&gt;AbstractKeyedHandler&lt;/code&gt;（KeyedHandler BeanMapHandler）&lt;/li&gt;
+&lt;li&gt;可供扩展的类：&lt;code&gt;BaseResultSetHandler&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java 操作Sqlite数据库</title>
+      <link>https://devhu.win/post/java-sqlite/</link>
+      <pubDate>Mon, 06 May 2019 10:26:34 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/java-sqlite/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Java 操作&lt;code&gt;Sqlite&lt;/code&gt;数据库。sqlite 驱动版本 &lt;code&gt;compile &amp;quot;org.xerial:sqlite-jdbc:3.27.2&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
     
     <item>
       <title>Vue uiv 组件踩坑记录</title>

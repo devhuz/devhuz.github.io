@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dbutils on 胡予の博客</title>
+    <link>https://devhu.win/tags/dbutils/</link>
+    <description>Recent content in Dbutils on 胡予の博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 10 May 2019 14:30:32 +0800</lastBuildDate>
+    
+	<atom:link href="https://devhu.win/tags/dbutils/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Java Dbutils 使用笔记</title>
+      <link>https://devhu.win/post/java-dbutils/</link>
+      <pubDate>Fri, 10 May 2019 14:30:32 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/java-dbutils/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://commons.apache.org/proper/commons-dbutils/&#34;&gt;Commons DbUtils&lt;/a&gt;是Apache组织提供的一个对JDBC进行简单封装的开源工具类库，使用它能够简化JDBC应用程序的开发，同时也不会影响程序的性能。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;单行数据处理：&lt;code&gt;ScalarHandler&lt;/code&gt;    &lt;code&gt;ArrayHandler&lt;/code&gt;    &lt;code&gt;MapHandler&lt;/code&gt;    &lt;code&gt;BeanHandler&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;多行数据处理：&lt;code&gt;BeanListHandler&lt;/code&gt;    &lt;code&gt;AbstractListHandler&lt;/code&gt;（ArrayListHandler MapListHandler ColumnListHandler） &lt;code&gt;AbstractKeyedHandler&lt;/code&gt;（KeyedHandler BeanMapHandler）&lt;/li&gt;
+&lt;li&gt;可供扩展的类：&lt;code&gt;BaseResultSetHandler&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

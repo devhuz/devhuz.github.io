@@ -39,6 +39,24 @@
     </item>
     
     <item>
+      <title>Db</title>
+      <link>https://devhu.win/tags/db/</link>
+      <pubDate>Fri, 10 May 2019 14:30:32 +0800</pubDate>
+      
+      <guid>https://devhu.win/tags/db/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dbutils</title>
+      <link>https://devhu.win/tags/dbutils/</link>
+      <pubDate>Fri, 10 May 2019 14:30:32 +0800</pubDate>
+      
+      <guid>https://devhu.win/tags/dbutils/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Fiddler</title>
       <link>https://devhu.win/tags/fiddler/</link>
       <pubDate>Sat, 16 Feb 2019 14:57:05 +0800</pubDate>
@@ -84,11 +102,38 @@
     </item>
     
     <item>
+      <title>Java</title>
+      <link>https://devhu.win/tags/java/</link>
+      <pubDate>Fri, 10 May 2019 14:30:32 +0800</pubDate>
+      
+      <guid>https://devhu.win/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Javascript</title>
+      <link>https://devhu.win/tags/javascript/</link>
+      <pubDate>Thu, 16 May 2019 14:33:35 +0800</pubDate>
+      
+      <guid>https://devhu.win/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Jenkins</title>
       <link>https://devhu.win/tags/jenkins/</link>
       <pubDate>Wed, 24 Apr 2019 16:22:05 +0800</pubDate>
       
       <guid>https://devhu.win/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jquery</title>
+      <link>https://devhu.win/tags/jquery/</link>
+      <pubDate>Thu, 16 May 2019 14:33:35 +0800</pubDate>
+      
+      <guid>https://devhu.win/tags/jquery/</guid>
       <description></description>
     </item>
     
@@ -125,6 +170,15 @@
       <pubDate>Sat, 16 Mar 2019 16:11:33 +0800</pubDate>
       
       <guid>https://devhu.win/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sqlite</title>
+      <link>https://devhu.win/tags/sqlite/</link>
+      <pubDate>Mon, 06 May 2019 10:26:34 +0800</pubDate>
+      
+      <guid>https://devhu.win/tags/sqlite/</guid>
       <description></description>
     </item>
     

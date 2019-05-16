@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on 胡予の博客</title>
+    <link>https://devhu.win/tags/javascript/</link>
+    <description>Recent content in Javascript on 胡予の博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 16 May 2019 14:33:35 +0800</lastBuildDate>
+    
+	<atom:link href="https://devhu.win/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>原生JavaScript与jQuery差异对比</title>
+      <link>https://devhu.win/post/javascript-vs-jquery/</link>
+      <pubDate>Thu, 16 May 2019 14:33:35 +0800</pubDate>
+      
+      <guid>https://devhu.win/post/javascript-vs-jquery/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原生&lt;code&gt;JavaScript&lt;/code&gt;与&lt;code&gt;jQuery&lt;/code&gt;操作差异对比，基于&lt;a href=&#34;https://www.w3schools.com/js/js_jquery_selectors.asp&#34;&gt;w3schools.com&lt;/a&gt;整理。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.52" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>原生JavaScript与jQuery差异对比 | 胡予の博客</title>
+    <meta property="og:title" content="原生JavaScript与jQuery差异对比 - 胡予の博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-05-16T14:33:35&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-05-16T14:33:35&#43;08:00">
+        
+    <meta name="Keywords" content="胡予,测试">
+    <meta name="description" content="原生JavaScript与jQuery差异对比">
+        
+    <meta name="author" content="胡予">
+    <meta property="og:url" content="https://devhu.win/post/javascript-vs-jquery/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://devhu.win/">
+                        胡予の博客
+                    </a>
+                
+                <p class="description">形而上者谓之道，形而下者谓之器。</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://devhu.win/">首页</a>
+                    
+                    <a  href="https://devhu.win/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://devhu.win/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">原生JavaScript与jQuery差异对比</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年5月16日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://devhu.win/categories/%E6%8A%80%E6%9C%AF">技术</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        <div class="post-content">
+                            <blockquote>
+<p>原生<code>JavaScript</code>与<code>jQuery</code>操作差异对比，基于<a href="https://www.w3schools.com/js/js_jquery_selectors.asp">w3schools.com</a>整理。</p>
+</blockquote>
+
+<h2 id="html元素查找">HTML元素查找</h2>
+
+<ul>
+<li>通过ID查找
+&gt;查找元素ID为<code>id01</code>的元素</li>
+</ul>
+
+<pre><code class="language-js">#JS
+var myElement = document.getElementById(&quot;id01&quot;);
+
+#jQuery
+var myElement = $(&quot;#id01&quot;);
+</code></pre>
+
+<ul>
+<li>通过Tag查找
+&gt;返回所有<code>&lt;p&gt;</code>元素</li>
+</ul>
+
+<pre><code class="language-js">#JS
+var myElements = document.getElementsByTagName(&quot;p&quot;);
+
+#jQuery
+var myElements = $(&quot;p&quot;);
+</code></pre>
+
+<ul>
+<li>通过Class Name查找
+&gt;返回所有<code>class=&quot;intro&quot;</code>的元素</li>
+</ul>
+
+<pre><code class="language-js">#JS
+var myElements = document.getElementsByClassName(&quot;intro&quot;);
+
+#jQuery
+var myElements = $(&quot;.intro&quot;);
+</code></pre>
+
+<ul>
+<li>通过CSS选择器查找
+&gt;返回所有<code>class=&quot;Introo&quot;</code> <code>&lt;p&gt;</code>元素的列表。</li>
+</ul>
+
+<pre><code class="language-js">#JS
+var myElements = document.querySelectorAll(&quot;p.intro&quot;);    #`querySelectorAll`不支持IE8
+
+#jQuery
+var myElements = $(&quot;p.intro&quot;);
+</code></pre>
+
+<h2 id="html元素操作">HTML元素操作</h2>
+
+<ul>
+<li>设置文本内容
+&gt;设置元素的文本：</li>
+</ul>
+
+<pre><code class="language-js">#JS
+myElement.textContent = &quot;Hello Sweden!&quot;;
+
+#jQuery
+myElement.text(&quot;Hello Sweden!&quot;);
+</code></pre>
+
+<ul>
+<li>获取文本内容
+&gt;获取元素的文本：</li>
+</ul>
+
+<pre><code class="language-js">#JS
+var myText = myElement.textContent || myElement.innerText;
+
+#jQuery
+var myText = myElement.text();
+</code></pre>
+
+<ul>
+<li>设置HTML内容
+&gt;设置元素的html内容：</li>
+</ul>
+
+<pre><code class="language-js">#JS
+var myElement.innerHTML = &quot;&lt;p&gt;Hello World&lt;/p&gt;&quot;;
+
+#jQuery
+var myElement.html(&quot;&lt;p&gt;Hello World&lt;/p&gt;&quot;);
+</code></pre>
+
+<ul>
+<li>获取HTML内容
+&gt;获取元素的html内容：</li>
+</ul>
+
+<pre><code class="language-js">#JS
+var content = myElement.innerHTML;
+
+#jQuery
+var content = myElement.html();
+</code></pre>
+
+<h2 id="css操作">CSS操作</h2>
+
+<ul>
+<li>隐藏HTML元素</li>
+</ul>
+
+<pre><code class="language-js">#JS
+myElement.style.display = &quot;none&quot;;
+
+#jQuery
+myElement.hide();
+</code></pre>
+
+<ul>
+<li>显示HTML元素</li>
+</ul>
+
+<pre><code class="language-js">#JS
+myElement.style.display = &quot;&quot;;
+
+#jQuery
+myElement.show();
+</code></pre>
+
+<h2 id="dom操作">DOM操作</h2>
+
+<ul>
+<li>删除元素</li>
+</ul>
+
+<pre><code class="language-js">#JS
+element.parentNode.removeChild(element);
+
+#jQuery
+$(&quot;#id&quot;).remove();
+</code></pre>
+
+<ul>
+<li>获取父元素</li>
+</ul>
+
+<pre><code class="language-js">#JS
+var myParent = myElement.parentNode;
+
+#jQuery
+var myParent = myElement.parent();
+</code></pre>
+                        </div>
+						
+							<div style="text-align: center;">
+	<h3 style="color: #c03925;">本站文章如无特殊说明，均为原创，转载请注明出处，欢迎转发。</h3>
+	
+	<p>如果本文对你有所帮助不妨小额赞赏，你的支持是我坚持的动力。</p>
+	<img style="max-width:25%;" src="https://devhu.win//images/donate.jpg" >
+	
+</div>
+
+						
+						
+
+<div class="post-archive">
+    <h5>更多推荐</h5>
+    <ul class="listing">
+        
+        <li><a href="/post/java-dbutils/">Java Dbutils 使用笔记</a></li>
+        
+        <li><a href="/post/java-sqlite/">Java 操作Sqlite数据库</a></li>
+        
+        <li><a href="/post/uiv-tips/">Vue uiv 组件踩坑记录</a></li>
+        
+        <li><a href="/post/git-tips/">Git 常用操作</a></li>
+        
+        <li><a href="/post/jenkins-plugins-download-tool/">Jenkins 插件下载工具</a></li>
+        
+    </ul>
+</div>
+
+						<div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://devhu.win/tags/javascript">JavaScript</a></li>
+                                
+                                <li><a href="https://devhu.win/tags/jquery">jQuery</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    
+    
+      <div id="lv-container" data-id="city" data-uid=MTAyMC8zMTc2NC84MzI4>
+        <script type="text/javascript">
+            (function(d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+      <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://devhu.win/post/javascript-vs-jquery/" title="原生JavaScript与jQuery差异对比">原生JavaScript与jQuery差异对比</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/java-dbutils/" title="Java Dbutils 使用笔记">Java Dbutils 使用笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/java-sqlite/" title="Java 操作Sqlite数据库">Java 操作Sqlite数据库</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/uiv-tips/" title="Vue uiv 组件踩坑记录">Vue uiv 组件踩坑记录</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/git-tips/" title="Git 常用操作">Git 常用操作</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/jenkins-plugins-download-tool/" title="Jenkins 插件下载工具">Jenkins 插件下载工具</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/deploy-jar-nginx/" title="Nginx 部署JAVA Jar项目">Nginx 部署JAVA Jar项目</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/kotlin-testng/" title="Kotlin Testng 重跑配置">Kotlin Testng 重跑配置</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/allure2-testng-gradle/" title="TestNG 使用 Allure2 报告 Gradle 配置说明">TestNG 使用 Allure2 报告 Gradle 配置说明</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/jsonp-fiddler/" title="Fiddler Mock Jsonp类型的返回结果">Fiddler Mock Jsonp类型的返回结果</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://devhu.win/categories/%E6%8A%80%E6%9C%AF/">技术(10)</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/categories/%E7%94%9F%E6%B4%BB/">生活(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/categories/%E8%BD%AF%E4%BB%B6/">软件(2)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://devhu.win/tags/2019/">2019</a>
+    
+    <a href="https://devhu.win/tags/allure/">allure</a>
+    
+    <a href="https://devhu.win/tags/bootstrap/">bootstrap</a>
+    
+    <a href="https://devhu.win/tags/db/">db</a>
+    
+    <a href="https://devhu.win/tags/dbutils/">dbutils</a>
+    
+    <a href="https://devhu.win/tags/fiddler/">fiddler</a>
+    
+    <a href="https://devhu.win/tags/git/">git</a>
+    
+    <a href="https://devhu.win/tags/gradle/">gradle</a>
+    
+    <a href="https://devhu.win/tags/hugo/">hugo</a>
+    
+    <a href="https://devhu.win/tags/jar/">jar</a>
+    
+    <a href="https://devhu.win/tags/java/">java</a>
+    
+    <a href="https://devhu.win/tags/javascript/">javascript</a>
+    
+    <a href="https://devhu.win/tags/jenkins/">jenkins</a>
+    
+    <a href="https://devhu.win/tags/jquery/">jquery</a>
+    
+    <a href="https://devhu.win/tags/jsonp/">jsonp</a>
+    
+    <a href="https://devhu.win/tags/kotlin/">kotlin</a>
+    
+    <a href="https://devhu.win/tags/mock/">mock</a>
+    
+    <a href="https://devhu.win/tags/nginx/">nginx</a>
+    
+    <a href="https://devhu.win/tags/sqlite/">sqlite</a>
+    
+    <a href="https://devhu.win/tags/testng/">testng</a>
+    
+    <a href="https://devhu.win/tags/tips/">tips</a>
+    
+    <a href="https://devhu.win/tags/uiv/">uiv</a>
+    
+    <a href="https://devhu.win/tags/vue/">vue</a>
+    
+    <a href="https://devhu.win/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+    
+    <a href="https://devhu.win/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://devhu.win/loveting" title="loveting">loveting</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://imgbox.com/" title="imgbox.com">博客图床</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://devhu.win/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://devhu.win/">胡予の博客 By 胡予</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        Theme based on maupassant.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+</html>

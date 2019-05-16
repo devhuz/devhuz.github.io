@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://devhu.win/post/javascript-vs-jquery/</loc>
+    <lastmod>2019-05-16T14:33:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://devhu.win/post/java-dbutils/</loc>
+    <lastmod>2019-05-10T14:30:32+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://devhu.win/post/java-sqlite/</loc>
+    <lastmod>2019-05-06T10:26:34+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://devhu.win/post/uiv-tips/</loc>
     <lastmod>2019-04-24T17:47:28+08:00</lastmod>
   </url>
@@ -81,6 +96,18 @@
   </url>
   
   <url>
+    <loc>https://devhu.win/tags/db/</loc>
+    <lastmod>2019-05-10T14:30:32+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://devhu.win/tags/dbutils/</loc>
+    <lastmod>2019-05-10T14:30:32+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://devhu.win/tags/fiddler/</loc>
     <lastmod>2019-02-16T14:57:05+08:00</lastmod>
     <priority>0</priority>
@@ -111,8 +138,26 @@
   </url>
   
   <url>
+    <loc>https://devhu.win/tags/java/</loc>
+    <lastmod>2019-05-10T14:30:32+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://devhu.win/tags/javascript/</loc>
+    <lastmod>2019-05-16T14:33:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://devhu.win/tags/jenkins/</loc>
     <lastmod>2019-04-24T16:22:05+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://devhu.win/tags/jquery/</loc>
+    <lastmod>2019-05-16T14:33:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -142,7 +187,13 @@
   
   <url>
     <loc>https://devhu.win/post/</loc>
-    <lastmod>2019-04-24T17:47:28+08:00</lastmod>
+    <lastmod>2019-05-16T14:33:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://devhu.win/tags/sqlite/</loc>
+    <lastmod>2019-05-06T10:26:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -188,7 +239,7 @@
   
   <url>
     <loc>https://devhu.win/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2019-04-24T17:47:28+08:00</lastmod>
+    <lastmod>2019-05-16T14:33:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -206,7 +257,7 @@
   
   <url>
     <loc>https://devhu.win/</loc>
-    <lastmod>2019-04-24T17:47:28+08:00</lastmod>
+    <lastmod>2019-05-16T14:33:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   

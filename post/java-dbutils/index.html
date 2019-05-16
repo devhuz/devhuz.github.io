@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.52" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Java Dbutils 使用笔记 | 胡予の博客</title>
+    <meta property="og:title" content="Java Dbutils 使用笔记 - 胡予の博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-05-10T14:30:32&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-05-10T14:30:32&#43;08:00">
+        
+    <meta name="Keywords" content="胡予,测试">
+    <meta name="description" content="Java Dbutils 使用笔记">
+        
+    <meta name="author" content="胡予">
+    <meta property="og:url" content="https://devhu.win/post/java-dbutils/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://devhu.win/">
+                        胡予の博客
+                    </a>
+                
+                <p class="description">形而上者谓之道，形而下者谓之器。</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://devhu.win/">首页</a>
+                    
+                    <a  href="https://devhu.win/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://devhu.win/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Java Dbutils 使用笔记</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年5月10日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://devhu.win/categories/%E6%8A%80%E6%9C%AF">技术</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        <div class="post-content">
+                            <blockquote>
+<p><a href="https://commons.apache.org/proper/commons-dbutils/">Commons DbUtils</a>是Apache组织提供的一个对JDBC进行简单封装的开源工具类库，使用它能够简化JDBC应用程序的开发，同时也不会影响程序的性能。</p>
+</blockquote>
+
+<ul>
+<li>单行数据处理：<code>ScalarHandler</code>    <code>ArrayHandler</code>    <code>MapHandler</code>    <code>BeanHandler</code></li>
+<li>多行数据处理：<code>BeanListHandler</code>    <code>AbstractListHandler</code>（ArrayListHandler MapListHandler ColumnListHandler） <code>AbstractKeyedHandler</code>（KeyedHandler BeanMapHandler）</li>
+<li>可供扩展的类：<code>BaseResultSetHandler</code></li>
+</ul>
+
+<p><code>Dbutils</code>所有操作都是基于<code>QueryRunner</code>类中，需要注意的是<code>insert</code>和<code>update</code>方法都能执行 “insert”开头的sql语句，但是返回值有区别。insert 执行后返回的是表中的插入行生成的主键值，update 返回的是受语句影响的行数。所以，如果目标表中有主键且需要返回插入行的主键值就用 insert 方法，如果表没有主键或者不需要返回主键值可使用 update 方法。</p>
+
+<blockquote>
+<p>创建一张<code>user</code>测试表，为了简便数据库使用sqlite。DbUtils MySQL、Sqlite 使用区别不大，可参考具体实例项目<a href="https://gitee.com/devhu/onestation">onestation</a></p>
+
+<pre><code class="language-sql">--create user table
+CREATE TABLE IF NOT EXISTS `user` (
+    `id`    INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    `uname` CHAR ( 30 ) NOT NULL UNIQUE,
+    `password`  CHAR ( 40 ) NOT NULL,
+    `registr_time`  DATETIME NOT NULL DEFAULT (datetime('now','localtime')),
+    `last_login_time`   DATETIME DEFAULT NULL
+);
+</code></pre>
+</blockquote>
+
+<h2 id="select">SELECT</h2>
+
+<ul>
+<li>简单查询</li>
+</ul>
+
+<pre><code class="language-java">QueryRunner runner = new QueryRunner();
+Connection conn = DBUtils.getConnection();
+
+String sql = &quot;select password from user where uname = ?;&quot;;
+try {
+    String pwd = runner.query(conn, sql, new ScalarHandler&lt;String&gt;(), &quot;admin&quot;);
+    conn.close();
+    System.out.println(pwd);
+} catch (SQLException e) {
+    e.printStackTrace();
+}
+</code></pre>
+
+<ul>
+<li><code>BeanHandler</code> 查询单个</li>
+</ul>
+
+<pre><code class="language-java">String sql = &quot;select * from user;&quot;;
+QueryRunner runner = new QueryRunner();
+Connection conn = SqliteDBUtil.getConnection();
+
+try {
+    User users = runner.query(conn, sql, new BeanHandler(User.class));
+    conn.close();
+} catch (SQLException e) {
+    e.printStackTrace();
+}
+</code></pre>
+
+<ul>
+<li><code>BeanListHandler</code>查询多个</li>
+</ul>
+
+<pre><code class="language-java">String sql = &quot;select * from user;&quot;;
+QueryRunner runner = new QueryRunner();
+Connection conn = SqliteDBUtil.getConnection();
+
+try {
+    List&lt;User&gt; users = runner.query(conn, sql, new BeanListHandler&lt;User&gt;(User.class));
+    conn.close();
+} catch (SQLException e) {
+    e.printStackTrace();
+}
+</code></pre>
+
+<h2 id="insert">INSERT</h2>
+
+<pre><code class="language-java">QueryRunner runner = new QueryRunner();
+Connection conn = SqliteDBUtil.getConnection();
+String inSql = &quot;insert into user (uname, password) values (?, ?)&quot;;
+
+try {
+        runner.insert(conn, inSql, new ScalarHandler&lt;Object&gt;(), &quot;test3&quot;, &quot;123456&quot;);
+    }
+    conn.close();
+} catch (SQLException e) {
+    e.printStackTrace();
+}
+</code></pre>
+
+<h2 id="update">UPDATE</h2>
+
+<pre><code class="language-java">QueryRunner runner = new QueryRunner();
+Connection conn = SqliteDBUtil.getConnection();
+
+String uSql = &quot;update user set user.last_login_time=CURRENT_TIMESTAMP where uname=?&quot;;
+try {
+    int num = runner.update(conn, uSql, &quot;admin&quot;);
+    System.out.println(&quot;受影响行数&quot; + num);
+    conn.close();
+} catch (SQLException e) {
+    e.printStackTrace();
+}
+</code></pre>
+
+<h2 id="tips">Tips</h2>
+
+<pre><code class="language-java">// 处理数据库字段为下划线，JAVA字段名为驼峰的情况
+RowProcessor processor = new BasicRowProcessor(new GenerousBeanProcessor());
+// BeanListHandler使用示例
+List&lt;User&gt; users = runner.query(conn, sql, new BeanListHandler&lt;User&gt;(User.class, processor));
+</code></pre>
+
+<blockquote>
+<p>扩展阅读：<a href="http://www.cnblogs.com/myit/p/4272824.html#ScalarHandler">http://www.cnblogs.com/myit/p/4272824.html#ScalarHandler</a></p>
+</blockquote>
+                        </div>
+						
+							<div style="text-align: center;">
+	<h3 style="color: #c03925;">本站文章如无特殊说明，均为原创，转载请注明出处，欢迎转发。</h3>
+	
+	<p>如果本文对你有所帮助不妨小额赞赏，你的支持是我坚持的动力。</p>
+	<img style="max-width:25%;" src="https://devhu.win//images/donate.jpg" >
+	
+</div>
+
+						
+						
+
+<div class="post-archive">
+    <h5>更多推荐</h5>
+    <ul class="listing">
+        
+        <li><a href="/post/java-sqlite/">Java 操作Sqlite数据库</a></li>
+        
+        <li><a href="/post/uiv-tips/">Vue uiv 组件踩坑记录</a></li>
+        
+        <li><a href="/post/git-tips/">Git 常用操作</a></li>
+        
+        <li><a href="/post/jenkins-plugins-download-tool/">Jenkins 插件下载工具</a></li>
+        
+        <li><a href="/post/deploy-jar-nginx/">Nginx 部署JAVA Jar项目</a></li>
+        
+    </ul>
+</div>
+
+						<div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://devhu.win/tags/java">JAVA</a></li>
+                                
+                                <li><a href="https://devhu.win/tags/dbutils">Dbutils</a></li>
+                                
+                                <li><a href="https://devhu.win/tags/db">DB</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    
+    
+      <div id="lv-container" data-id="city" data-uid=MTAyMC8zMTc2NC84MzI4>
+        <script type="text/javascript">
+            (function(d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+      <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://devhu.win/post/javascript-vs-jquery/" title="原生JavaScript与jQuery差异对比">原生JavaScript与jQuery差异对比</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/java-dbutils/" title="Java Dbutils 使用笔记">Java Dbutils 使用笔记</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/java-sqlite/" title="Java 操作Sqlite数据库">Java 操作Sqlite数据库</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/uiv-tips/" title="Vue uiv 组件踩坑记录">Vue uiv 组件踩坑记录</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/git-tips/" title="Git 常用操作">Git 常用操作</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/jenkins-plugins-download-tool/" title="Jenkins 插件下载工具">Jenkins 插件下载工具</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/deploy-jar-nginx/" title="Nginx 部署JAVA Jar项目">Nginx 部署JAVA Jar项目</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/kotlin-testng/" title="Kotlin Testng 重跑配置">Kotlin Testng 重跑配置</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/allure2-testng-gradle/" title="TestNG 使用 Allure2 报告 Gradle 配置说明">TestNG 使用 Allure2 报告 Gradle 配置说明</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/post/jsonp-fiddler/" title="Fiddler Mock Jsonp类型的返回结果">Fiddler Mock Jsonp类型的返回结果</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://devhu.win/categories/%E6%8A%80%E6%9C%AF/">技术(10)</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/categories/%E7%94%9F%E6%B4%BB/">生活(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://devhu.win/categories/%E8%BD%AF%E4%BB%B6/">软件(2)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://devhu.win/tags/2019/">2019</a>
+    
+    <a href="https://devhu.win/tags/allure/">allure</a>
+    
+    <a href="https://devhu.win/tags/bootstrap/">bootstrap</a>
+    
+    <a href="https://devhu.win/tags/db/">db</a>
+    
+    <a href="https://devhu.win/tags/dbutils/">dbutils</a>
+    
+    <a href="https://devhu.win/tags/fiddler/">fiddler</a>
+    
+    <a href="https://devhu.win/tags/git/">git</a>
+    
+    <a href="https://devhu.win/tags/gradle/">gradle</a>
+    
+    <a href="https://devhu.win/tags/hugo/">hugo</a>
+    
+    <a href="https://devhu.win/tags/jar/">jar</a>
+    
+    <a href="https://devhu.win/tags/java/">java</a>
+    
+    <a href="https://devhu.win/tags/javascript/">javascript</a>
+    
+    <a href="https://devhu.win/tags/jenkins/">jenkins</a>
+    
+    <a href="https://devhu.win/tags/jquery/">jquery</a>
+    
+    <a href="https://devhu.win/tags/jsonp/">jsonp</a>
+    
+    <a href="https://devhu.win/tags/kotlin/">kotlin</a>
+    
+    <a href="https://devhu.win/tags/mock/">mock</a>
+    
+    <a href="https://devhu.win/tags/nginx/">nginx</a>
+    
+    <a href="https://devhu.win/tags/sqlite/">sqlite</a>
+    
+    <a href="https://devhu.win/tags/testng/">testng</a>
+    
+    <a href="https://devhu.win/tags/tips/">tips</a>
+    
+    <a href="https://devhu.win/tags/uiv/">uiv</a>
+    
+    <a href="https://devhu.win/tags/vue/">vue</a>
+    
+    <a href="https://devhu.win/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+    
+    <a href="https://devhu.win/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://devhu.win/loveting" title="loveting">loveting</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="https://imgbox.com/" title="imgbox.com">博客图床</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://devhu.win/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="https://devhu.win/">胡予の博客 By 胡予</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        Theme based on maupassant.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+</html>
