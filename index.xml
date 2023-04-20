@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>胡予の博客</title>
-    <link>https://devhu.win/</link>
+    <link>https://devhuz.github.io/</link>
     <description>Recent content on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 16 May 2019 14:33:35 +0800</lastBuildDate>
     
-	<atom:link href="https://devhu.win/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://devhuz.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>原生JavaScript与jQuery差异对比</title>
-      <link>https://devhu.win/post/javascript-vs-jquery/</link>
+      <link>https://devhuz.github.io/post/javascript-vs-jquery/</link>
       <pubDate>Thu, 16 May 2019 14:33:35 +0800</pubDate>
       
-      <guid>https://devhu.win/post/javascript-vs-jquery/</guid>
+      <guid>https://devhuz.github.io/post/javascript-vs-jquery/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;原生&lt;code&gt;JavaScript&lt;/code&gt;与&lt;code&gt;jQuery&lt;/code&gt;操作差异对比，基于&lt;a href=&#34;https://www.w3schools.com/js/js_jquery_selectors.asp&#34;&gt;w3schools.com&lt;/a&gt;整理。&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -24,10 +24,10 @@
     
     <item>
       <title>Java Dbutils 使用笔记</title>
-      <link>https://devhu.win/post/java-dbutils/</link>
+      <link>https://devhuz.github.io/post/java-dbutils/</link>
       <pubDate>Fri, 10 May 2019 14:30:32 +0800</pubDate>
       
-      <guid>https://devhu.win/post/java-dbutils/</guid>
+      <guid>https://devhuz.github.io/post/java-dbutils/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://commons.apache.org/proper/commons-dbutils/&#34;&gt;Commons DbUtils&lt;/a&gt;是Apache组织提供的一个对JDBC进行简单封装的开源工具类库，使用它能够简化JDBC应用程序的开发，同时也不会影响程序的性能。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -41,10 +41,10 @@
     
     <item>
       <title>Java 操作Sqlite数据库</title>
-      <link>https://devhu.win/post/java-sqlite/</link>
+      <link>https://devhuz.github.io/post/java-sqlite/</link>
       <pubDate>Mon, 06 May 2019 10:26:34 +0800</pubDate>
       
-      <guid>https://devhu.win/post/java-sqlite/</guid>
+      <guid>https://devhuz.github.io/post/java-sqlite/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Java 操作&lt;code&gt;Sqlite&lt;/code&gt;数据库。sqlite 驱动版本 &lt;code&gt;compile &amp;quot;org.xerial:sqlite-jdbc:3.27.2&amp;quot;&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -52,10 +52,10 @@
     
     <item>
       <title>Vue uiv 组件踩坑记录</title>
-      <link>https://devhu.win/post/uiv-tips/</link>
+      <link>https://devhuz.github.io/post/uiv-tips/</link>
       <pubDate>Wed, 24 Apr 2019 17:47:28 +0800</pubDate>
       
-      <guid>https://devhu.win/post/uiv-tips/</guid>
+      <guid>https://devhuz.github.io/post/uiv-tips/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;uiv&lt;/code&gt;是基于&lt;code&gt;Bootstrap 3&lt;/code&gt;的&lt;code&gt;vue&lt;/code&gt;组件（&lt;code&gt;Bootstrap&lt;/code&gt;官方提供的组件时基于&lt;code&gt;Bootstrap 4&lt;/code&gt;的）。在使用的过程中发现了一些问题，踩了些坑，特此记录下。&lt;a href=&#34;https://uiv.wxsm.space&#34;&gt;https://uiv.wxsm.space&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -63,10 +63,10 @@
     
     <item>
       <title>Git 常用操作</title>
-      <link>https://devhu.win/post/git-tips/</link>
+      <link>https://devhuz.github.io/post/git-tips/</link>
       <pubDate>Wed, 24 Apr 2019 17:26:19 +0800</pubDate>
       
-      <guid>https://devhu.win/post/git-tips/</guid>
+      <guid>https://devhuz.github.io/post/git-tips/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Git常用操作命令记录备忘。&lt;a href=&#34;https://gitee.com/progit/&#34;&gt;Git教程《Pro Git（中文版）》&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -74,10 +74,10 @@
     
     <item>
       <title>Jenkins 插件下载工具</title>
-      <link>https://devhu.win/post/jenkins-plugins-download-tool/</link>
+      <link>https://devhuz.github.io/post/jenkins-plugins-download-tool/</link>
       <pubDate>Wed, 24 Apr 2019 16:22:05 +0800</pubDate>
       
-      <guid>https://devhu.win/post/jenkins-plugins-download-tool/</guid>
+      <guid>https://devhuz.github.io/post/jenkins-plugins-download-tool/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Jenkins 插件在线安装失败时，通常需要手动下载&lt;code&gt;.hpi&lt;/code&gt;文件上传安装，在下载插件过程中常常会出现一个插件依赖另外一个插件的情况（通常情况下会出现A依赖B，B依赖C，C依赖D的情况），手动处理这种递归依赖十分麻烦，需要在下载插件的时候同时下载相关依赖。&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -85,10 +85,10 @@
     
     <item>
       <title>Nginx 部署JAVA Jar项目</title>
-      <link>https://devhu.win/post/deploy-jar-nginx/</link>
+      <link>https://devhuz.github.io/post/deploy-jar-nginx/</link>
       <pubDate>Sat, 16 Mar 2019 16:11:33 +0800</pubDate>
       
-      <guid>https://devhu.win/post/deploy-jar-nginx/</guid>
+      <guid>https://devhuz.github.io/post/deploy-jar-nginx/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Nginx 部署Spring boot 等 JAVA Web Jar项目脚本配置，记录备忘。&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -96,10 +96,10 @@
     
     <item>
       <title>Kotlin Testng 重跑配置</title>
-      <link>https://devhu.win/post/kotlin-testng/</link>
+      <link>https://devhuz.github.io/post/kotlin-testng/</link>
       <pubDate>Sat, 02 Mar 2019 16:03:38 +0800</pubDate>
       
-      <guid>https://devhu.win/post/kotlin-testng/</guid>
+      <guid>https://devhuz.github.io/post/kotlin-testng/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Kotlin 兼容Java 支持与 Java 互操作，使用Kotlin写测试用例更简单快捷。在使用TestNG过程中经常需要自定义重跑，官网和网上大部分都是JAVA的示例，特此记录下Kotlin的写法。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -113,19 +113,19 @@
     
     <item>
       <title>TestNG 使用 Allure2 报告 Gradle 配置说明</title>
-      <link>https://devhu.win/post/allure2-testng-gradle/</link>
+      <link>https://devhuz.github.io/post/allure2-testng-gradle/</link>
       <pubDate>Sat, 02 Mar 2019 15:38:57 +0800</pubDate>
       
-      <guid>https://devhu.win/post/allure2-testng-gradle/</guid>
+      <guid>https://devhuz.github.io/post/allure2-testng-gradle/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://images2.imgbox.com/18/79/FBjDDzbY_o.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Fiddler Mock Jsonp类型的返回结果</title>
-      <link>https://devhu.win/post/jsonp-fiddler/</link>
+      <link>https://devhuz.github.io/post/jsonp-fiddler/</link>
       <pubDate>Sat, 16 Feb 2019 14:57:05 +0800</pubDate>
       
-      <guid>https://devhu.win/post/jsonp-fiddler/</guid>
+      <guid>https://devhuz.github.io/post/jsonp-fiddler/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;在日常测试过程中，经常会用&lt;code&gt;fiddler&lt;/code&gt; 抓包mock数据，对于普通的接口返回类型比较容易mock，但是像&lt;code&gt;JSONP&lt;/code&gt;由于其返回结果带有时间戳相当于每次返回内容是动态的所以不能直接写死需要使用&lt;code&gt;Fiddler Script&lt;/code&gt;动态替换Response。&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -133,10 +133,10 @@
     
     <item>
       <title>Kotlin 一点零散笔记</title>
-      <link>https://devhu.win/post/kotlin-simple-note/</link>
+      <link>https://devhuz.github.io/post/kotlin-simple-note/</link>
       <pubDate>Fri, 08 Feb 2019 16:09:03 +0800</pubDate>
       
-      <guid>https://devhu.win/post/kotlin-simple-note/</guid>
+      <guid>https://devhuz.github.io/post/kotlin-simple-note/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Kotlin 一些零散笔记，记录备忘，方便查找。&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -144,20 +144,20 @@
     
     <item>
       <title>新的开始</title>
-      <link>https://devhu.win/post/new-beginning/</link>
+      <link>https://devhuz.github.io/post/new-beginning/</link>
       <pubDate>Mon, 28 Jan 2019 02:10:04 +0800</pubDate>
       
-      <guid>https://devhu.win/post/new-beginning/</guid>
+      <guid>https://devhuz.github.io/post/new-beginning/</guid>
       <description> 经过一番折腾，新博客终于弄好了，新的一年一定要坚持写博，2019 加油！
  </description>
     </item>
     
     <item>
       <title>Hugo搭建个人博客</title>
-      <link>https://devhu.win/post/hugo-start/</link>
+      <link>https://devhuz.github.io/post/hugo-start/</link>
       <pubDate>Sun, 27 Jan 2019 20:55:18 +0800</pubDate>
       
-      <guid>https://devhu.win/post/hugo-start/</guid>
+      <guid>https://devhuz.github.io/post/hugo-start/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;记录下博客搭建过程，网上虽然已有很多类似的教程但是都十分零碎的，本文主要记录本站的搭建过程。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -167,10 +167,10 @@
     
     <item>
       <title>关于</title>
-      <link>https://devhu.win/about/</link>
+      <link>https://devhuz.github.io/about/</link>
       <pubDate>Sun, 27 Jan 2019 18:45:00 +0800</pubDate>
       
-      <guid>https://devhu.win/about/</guid>
+      <guid>https://devhuz.github.io/about/</guid>
       <description>似乎每个站点都有个关于页面，所以我决定也弄一个,好让它看起来正式一点。
  “形而上者谓之道，形而下者谓之器”，子曰：“君子不器”
 关于本站 本站基于hugo搭建，目前以Github Pages的形式托管在Github。
@@ -183,10 +183,10 @@ Email: devhu#foxmail.com(#替换成@)</description>
     
     <item>
       <title>归档</title>
-      <link>https://devhu.win/archives/</link>
+      <link>https://devhuz.github.io/archives/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://devhu.win/archives/</guid>
+      <guid>https://devhuz.github.io/archives/</guid>
       <description></description>
     </item>
     

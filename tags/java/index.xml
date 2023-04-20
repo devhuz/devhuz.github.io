@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Java on 胡予の博客</title>
-    <link>https://devhu.win/tags/java/</link>
+    <link>https://devhuz.github.io/tags/java/</link>
     <description>Recent content in Java on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 10 May 2019 14:30:32 +0800</lastBuildDate>
     
-	<atom:link href="https://devhu.win/tags/java/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://devhuz.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Java Dbutils 使用笔记</title>
-      <link>https://devhu.win/post/java-dbutils/</link>
+      <link>https://devhuz.github.io/post/java-dbutils/</link>
       <pubDate>Fri, 10 May 2019 14:30:32 +0800</pubDate>
       
-      <guid>https://devhu.win/post/java-dbutils/</guid>
+      <guid>https://devhuz.github.io/post/java-dbutils/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://commons.apache.org/proper/commons-dbutils/&#34;&gt;Commons DbUtils&lt;/a&gt;是Apache组织提供的一个对JDBC进行简单封装的开源工具类库，使用它能够简化JDBC应用程序的开发，同时也不会影响程序的性能。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -30,10 +30,10 @@
     
     <item>
       <title>Java 操作Sqlite数据库</title>
-      <link>https://devhu.win/post/java-sqlite/</link>
+      <link>https://devhuz.github.io/post/java-sqlite/</link>
       <pubDate>Mon, 06 May 2019 10:26:34 +0800</pubDate>
       
-      <guid>https://devhu.win/post/java-sqlite/</guid>
+      <guid>https://devhuz.github.io/post/java-sqlite/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Java 操作&lt;code&gt;Sqlite&lt;/code&gt;数据库。sqlite 驱动版本 &lt;code&gt;compile &amp;quot;org.xerial:sqlite-jdbc:3.27.2&amp;quot;&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</description>

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gradle on 胡予の博客</title>
-    <link>https://devhu.win/tags/gradle/</link>
+    <link>https://devhuz.github.io/tags/gradle/</link>
     <description>Recent content in Gradle on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 02 Mar 2019 15:38:57 +0800</lastBuildDate>
     
-	<atom:link href="https://devhu.win/tags/gradle/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://devhuz.github.io/tags/gradle/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>TestNG 使用 Allure2 报告 Gradle 配置说明</title>
-      <link>https://devhu.win/post/allure2-testng-gradle/</link>
+      <link>https://devhuz.github.io/post/allure2-testng-gradle/</link>
       <pubDate>Sat, 02 Mar 2019 15:38:57 +0800</pubDate>
       
-      <guid>https://devhu.win/post/allure2-testng-gradle/</guid>
+      <guid>https://devhuz.github.io/post/allure2-testng-gradle/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://images2.imgbox.com/18/79/FBjDDzbY_o.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
     </item>
     

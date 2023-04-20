@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nginx on 胡予の博客</title>
-    <link>https://devhu.win/tags/nginx/</link>
+    <link>https://devhuz.github.io/tags/nginx/</link>
     <description>Recent content in Nginx on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 16 Mar 2019 16:11:33 +0800</lastBuildDate>
     
-	<atom:link href="https://devhu.win/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://devhuz.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Nginx 部署JAVA Jar项目</title>
-      <link>https://devhu.win/post/deploy-jar-nginx/</link>
+      <link>https://devhuz.github.io/post/deploy-jar-nginx/</link>
       <pubDate>Sat, 16 Mar 2019 16:11:33 +0800</pubDate>
       
-      <guid>https://devhu.win/post/deploy-jar-nginx/</guid>
+      <guid>https://devhuz.github.io/post/deploy-jar-nginx/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Nginx 部署Spring boot 等 JAVA Web Jar项目脚本配置，记录备忘。&lt;/p&gt;
 &lt;/blockquote&gt;</description>

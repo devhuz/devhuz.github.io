@@ -2,237 +2,237 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 胡予の博客</title>
-    <link>https://devhu.win/tags/</link>
+    <link>https://devhuz.github.io/tags/</link>
     <description>Recent content in Tags on 胡予の博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 28 Jan 2019 02:10:04 +0800</lastBuildDate>
     
-	<atom:link href="https://devhu.win/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://devhuz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>2019</title>
-      <link>https://devhu.win/tags/2019/</link>
+      <link>https://devhuz.github.io/tags/2019/</link>
       <pubDate>Mon, 28 Jan 2019 02:10:04 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/2019/</guid>
+      <guid>https://devhuz.github.io/tags/2019/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Allure</title>
-      <link>https://devhu.win/tags/allure/</link>
+      <link>https://devhuz.github.io/tags/allure/</link>
       <pubDate>Sat, 02 Mar 2019 15:38:57 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/allure/</guid>
+      <guid>https://devhuz.github.io/tags/allure/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bootstrap</title>
-      <link>https://devhu.win/tags/bootstrap/</link>
+      <link>https://devhuz.github.io/tags/bootstrap/</link>
       <pubDate>Wed, 24 Apr 2019 17:47:28 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/bootstrap/</guid>
+      <guid>https://devhuz.github.io/tags/bootstrap/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Db</title>
-      <link>https://devhu.win/tags/db/</link>
+      <link>https://devhuz.github.io/tags/db/</link>
       <pubDate>Fri, 10 May 2019 14:30:32 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/db/</guid>
+      <guid>https://devhuz.github.io/tags/db/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dbutils</title>
-      <link>https://devhu.win/tags/dbutils/</link>
+      <link>https://devhuz.github.io/tags/dbutils/</link>
       <pubDate>Fri, 10 May 2019 14:30:32 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/dbutils/</guid>
+      <guid>https://devhuz.github.io/tags/dbutils/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Fiddler</title>
-      <link>https://devhu.win/tags/fiddler/</link>
+      <link>https://devhuz.github.io/tags/fiddler/</link>
       <pubDate>Sat, 16 Feb 2019 14:57:05 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/fiddler/</guid>
+      <guid>https://devhuz.github.io/tags/fiddler/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Git</title>
-      <link>https://devhu.win/tags/git/</link>
+      <link>https://devhuz.github.io/tags/git/</link>
       <pubDate>Wed, 24 Apr 2019 17:26:19 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/git/</guid>
+      <guid>https://devhuz.github.io/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Gradle</title>
-      <link>https://devhu.win/tags/gradle/</link>
+      <link>https://devhuz.github.io/tags/gradle/</link>
       <pubDate>Sat, 02 Mar 2019 15:38:57 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/gradle/</guid>
+      <guid>https://devhuz.github.io/tags/gradle/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://devhu.win/tags/hugo/</link>
+      <link>https://devhuz.github.io/tags/hugo/</link>
       <pubDate>Sun, 27 Jan 2019 20:55:18 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/hugo/</guid>
+      <guid>https://devhuz.github.io/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jar</title>
-      <link>https://devhu.win/tags/jar/</link>
+      <link>https://devhuz.github.io/tags/jar/</link>
       <pubDate>Sat, 16 Mar 2019 16:11:33 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/jar/</guid>
+      <guid>https://devhuz.github.io/tags/jar/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java</title>
-      <link>https://devhu.win/tags/java/</link>
+      <link>https://devhuz.github.io/tags/java/</link>
       <pubDate>Fri, 10 May 2019 14:30:32 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/java/</guid>
+      <guid>https://devhuz.github.io/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Javascript</title>
-      <link>https://devhu.win/tags/javascript/</link>
+      <link>https://devhuz.github.io/tags/javascript/</link>
       <pubDate>Thu, 16 May 2019 14:33:35 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/javascript/</guid>
+      <guid>https://devhuz.github.io/tags/javascript/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jenkins</title>
-      <link>https://devhu.win/tags/jenkins/</link>
+      <link>https://devhuz.github.io/tags/jenkins/</link>
       <pubDate>Wed, 24 Apr 2019 16:22:05 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/jenkins/</guid>
+      <guid>https://devhuz.github.io/tags/jenkins/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jquery</title>
-      <link>https://devhu.win/tags/jquery/</link>
+      <link>https://devhuz.github.io/tags/jquery/</link>
       <pubDate>Thu, 16 May 2019 14:33:35 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/jquery/</guid>
+      <guid>https://devhuz.github.io/tags/jquery/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jsonp</title>
-      <link>https://devhu.win/tags/jsonp/</link>
+      <link>https://devhuz.github.io/tags/jsonp/</link>
       <pubDate>Sat, 16 Feb 2019 14:57:05 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/jsonp/</guid>
+      <guid>https://devhuz.github.io/tags/jsonp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kotlin</title>
-      <link>https://devhu.win/tags/kotlin/</link>
+      <link>https://devhuz.github.io/tags/kotlin/</link>
       <pubDate>Wed, 24 Apr 2019 16:22:05 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/kotlin/</guid>
+      <guid>https://devhuz.github.io/tags/kotlin/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mock</title>
-      <link>https://devhu.win/tags/mock/</link>
+      <link>https://devhuz.github.io/tags/mock/</link>
       <pubDate>Sat, 16 Feb 2019 14:57:05 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/mock/</guid>
+      <guid>https://devhuz.github.io/tags/mock/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nginx</title>
-      <link>https://devhu.win/tags/nginx/</link>
+      <link>https://devhuz.github.io/tags/nginx/</link>
       <pubDate>Sat, 16 Mar 2019 16:11:33 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/nginx/</guid>
+      <guid>https://devhuz.github.io/tags/nginx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sqlite</title>
-      <link>https://devhu.win/tags/sqlite/</link>
+      <link>https://devhuz.github.io/tags/sqlite/</link>
       <pubDate>Mon, 06 May 2019 10:26:34 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/sqlite/</guid>
+      <guid>https://devhuz.github.io/tags/sqlite/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Testng</title>
-      <link>https://devhu.win/tags/testng/</link>
+      <link>https://devhuz.github.io/tags/testng/</link>
       <pubDate>Sat, 02 Mar 2019 16:03:38 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/testng/</guid>
+      <guid>https://devhuz.github.io/tags/testng/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tips</title>
-      <link>https://devhu.win/tags/tips/</link>
+      <link>https://devhuz.github.io/tags/tips/</link>
       <pubDate>Wed, 24 Apr 2019 17:26:19 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/tips/</guid>
+      <guid>https://devhuz.github.io/tags/tips/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Uiv</title>
-      <link>https://devhu.win/tags/uiv/</link>
+      <link>https://devhuz.github.io/tags/uiv/</link>
       <pubDate>Wed, 24 Apr 2019 17:47:28 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/uiv/</guid>
+      <guid>https://devhuz.github.io/tags/uiv/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Vue</title>
-      <link>https://devhu.win/tags/vue/</link>
+      <link>https://devhuz.github.io/tags/vue/</link>
       <pubDate>Wed, 24 Apr 2019 17:47:28 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/vue/</guid>
+      <guid>https://devhuz.github.io/tags/vue/</guid>
       <description></description>
     </item>
     
     <item>
       <title>博客</title>
-      <link>https://devhu.win/tags/%E5%8D%9A%E5%AE%A2/</link>
+      <link>https://devhuz.github.io/tags/%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Mon, 28 Jan 2019 02:10:04 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>https://devhuz.github.io/tags/%E5%8D%9A%E5%AE%A2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>测试</title>
-      <link>https://devhu.win/tags/%E6%B5%8B%E8%AF%95/</link>
+      <link>https://devhuz.github.io/tags/%E6%B5%8B%E8%AF%95/</link>
       <pubDate>Sat, 02 Mar 2019 16:03:38 +0800</pubDate>
       
-      <guid>https://devhu.win/tags/%E6%B5%8B%E8%AF%95/</guid>
+      <guid>https://devhuz.github.io/tags/%E6%B5%8B%E8%AF%95/</guid>
       <description></description>
     </item>
     
